@@ -1,0 +1,36 @@
+import React from 'react';
+import logo from './logo.svg';
+import './App.css';
+
+/*This class is used to fetch the users from the allRandUsers endpoint and throw back card elements*/
+class App extends React.Component {
+  
+  constructor() {
+    super();
+    this.state = {
+      data: "lexie"
+    };
+  }
+
+  
+
+  //connects to the endpoint and parses its response to then set this.state's data value to the response.
+  componentDidMount() {
+    fetch('http://127.0.0.1:5000/userCount')
+    .then(results => {
+      alert("hello")
+      return results.json();
+    })
+  }
+
+  //runs a sudo for loop to iterate through the list of users it was given
+  render() {
+    return(
+      <div>
+        <h1>{this.state.data}</h1> 
+
+      </div>
+    )
+  }
+}
+export default App
