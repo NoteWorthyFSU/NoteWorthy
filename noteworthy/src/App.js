@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-
+import InBox from './InBox.js'
 /*This class is used to fetch the users from the allRandUsers endpoint and throw back card elements*/
 class App extends React.Component {
   
@@ -28,7 +28,7 @@ class App extends React.Component {
     return(
       <div>
         <h1>{this.state.data}</h1> 
-
+        <InBox/>        
       </div>
     )
   }
