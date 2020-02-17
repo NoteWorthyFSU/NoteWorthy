@@ -16,11 +16,7 @@ class App extends React.Component {
 
   //connects to the endpoint and parses its response to then set this.state's data value to the response.
   componentDidMount() {
-    fetch('http://127.0.0.1:5000/userCount')
-    .then(results => {
-      alert("hello")
-      return results.json();
-    })
+    alert("testing backend soon")
   }
 
   //runs a sudo for loop to iterate through the list of users it was given
