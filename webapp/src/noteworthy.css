@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+
+/*Garnet Background*/
+h1 {
+  font-size: 6.944vw;
+  color: pink;
+}
+
+.loginBox {
+  background-color: royalblue;
+  width: 50vw;
+  height: 50vw;
+}
+
+.userInput {
+  
+  width: 20vw;
+  height: 5vw;
+  font-size: 1.736vw;
+
+}
