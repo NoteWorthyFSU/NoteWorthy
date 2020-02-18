@@ -16,8 +16,6 @@ class InBox extends React.Component {
             <form >
                <input type="text" id = "in" name="Hold" placeholder={this.state.notes}
                  onChange={evt => this.update(evt)}/>
-               <input type="submit" value="Submit"/>
-               
             </form>
             <p> {this.state.notes}</p>
         </div>);   

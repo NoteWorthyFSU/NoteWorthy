@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import Login from './Login';
-import InBox from './InBox';
+import Notes from './Notes';
 import Error from './Error';
 import { Redirect, Switch, Route, BrowserRouter as Router, Link } from 'react-router-dom';
 import {render} from 'react-dom';
@@ -14,7 +14,7 @@ const routing = (
     <Switch>
       <Route exact path="/" component={App}/>
       <Route  exact path="/login" component={Login}/>
-      <Route  exact path="/inbox" component={InBox}/>
+      <Route  exact path="/Notes" component={Notes}/>
       <Route exact path="/*" component={Error}/>
     </Switch>
   </Router>
