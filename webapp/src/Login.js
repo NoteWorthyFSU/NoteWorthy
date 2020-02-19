@@ -16,6 +16,7 @@ class Login extends React.Component {
         <h1 className = "loginHeader">
           <center> Let's get started now! </center>
         </h1>
+        
         <h2 className = "loginSub">
           <center> Or create an account if not registered yet </center>
         </h2>
