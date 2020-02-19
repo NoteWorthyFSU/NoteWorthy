@@ -45,11 +45,14 @@ h4 {
   width: 80vw;
   height: 35vw;
   margin-left: 8vw;
+  box-shadow: 10px 10px 20px black;
   
 }
 
 .noteWorthy{
-  margin-bottom: 5vh;
+  margin-top: 8vh;
+  margin-bottom: 2vh;
+  font-weight: lighter;
 }
 
 .userInput {
@@ -69,19 +72,20 @@ input[type=text]:focus {
   border-radius: 4px;
 }
 
-.userInput[type=password]{
-  border: #3AAFA9;
-  border-radius: 4px;
-}
-
-input[type=password]:focus {
-  border: 3px solid #555;
-  border-radius: 4px;
+.userInputPW[type=submit]{
+  border: none;
+  background-color: inherit;
+  padding: 14px 28px;
+  font-size: 10px;
+  cursor: pointer;
+  display: inline-block;
+  color: #3AAFA9;
 }
 
 .userInput[type=submit]{
   background-color: #3AAFA9;
-
+  margin-top: 20px;
+  box-shadow: 10px 10px 20px black;
 }
 
 .userInput:hover[type=submit]{
@@ -97,6 +101,4 @@ input[type=password]:focus {
   position: relative;
   right: 30vw;
   top: -60vh;
-
-  
 }

@@ -30,7 +30,7 @@ class Login extends React.Component {
                     <br></br>
                   <button className="userInput" type="submit">Sign In</button>
                 </form>
-                <button className="userInput" type="submit">Forgot Password</button>
+                <button className="userInputPW" type="submit">Forgot Password</button>
             </center>
           </div>
         </div>);
