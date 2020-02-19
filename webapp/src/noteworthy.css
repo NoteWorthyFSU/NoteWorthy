@@ -99,6 +99,11 @@ input[type=password]:focus {
   border: 0.5px solid #3AAFA9;
 }
 
+.userInput::placeholder{
+  color: #2b7a78;
+  padding-left: 5%;
+}
+
 .userInputPW[type=submit]{
   border: none;
   background-color: inherit;
