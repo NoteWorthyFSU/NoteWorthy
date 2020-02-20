@@ -14,6 +14,7 @@ body{
 }
 
 body::after{
+  
   background-image: url("https://ak1.picdn.net/shutterstock/videos/3286601/thumb/1.jpg");
   z-index: -1;
   position: absolute;
