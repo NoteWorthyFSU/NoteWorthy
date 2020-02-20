@@ -19,6 +19,7 @@ class Login extends React.Component {
         <h2 className = "loginSub">
           <center> Or create an account if not registered yet </center>
         </h2>
+        
   
           <div className = "loginBox">
             <center>
