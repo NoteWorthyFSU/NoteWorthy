@@ -64,4 +64,8 @@ def login():
     var = "username: " + username + "|||||||" + "password: " + password 
     return Response(200, var).serialize()
 
+@app.route('/registration', methods=['POST', 'GET'])
+def registration(): 
+   return render_template('registration.html')
+
     
