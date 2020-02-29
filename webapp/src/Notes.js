@@ -50,7 +50,7 @@ class Notes extends React.Component {
                  onBlur={evt => this.update(evt)}/>       
             </form>
            
-            <p id="currentNotes"> </p>
+            <p id="currentNotes" align="right"> </p>
 
         </div>);   
     }
