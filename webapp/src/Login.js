@@ -24,7 +24,7 @@ class Login extends React.Component {
             <center>
             <h4 className = "noteWorthy"> NoteWorthy</h4>
             <form action = 'http://localhost:5000/login' method = 'POST'>
-                    <input className = "userInput"required type="text" name="username" placeholder="Username"></input>
+                    <input className = "userInput"required type="text" name="email" placeholder="Username"></input>
                     <br></br>
                   <input required className="userInput" type="password" name="password" placeholder="Password"></input>
                     <br></br>

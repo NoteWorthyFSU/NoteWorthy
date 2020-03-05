@@ -31,12 +31,9 @@ def home():
     firstName = document['firstname']
     lastName = document['lastname']
     email = document['email']
-
     rawPassword = document['password'].encode('utf-8')
     
     hashedPassword = bcrypt.hashpw(rawPassword, bcrypt.gensalt())
-    
-
     user = mongo.db.users.find_one({'email': email})
 
     if user is not None:
@@ -53,7 +50,7 @@ def home():
       if verifiedUser is None:
         return "The API reported an error"
       else:
-        return ("Welcome" +  verifiedUser['firstName'] )
+        return ("Welcome " +  verifiedUser['firstName'] )
 
       #redirect("http://localhost:5000/postRegister")
 
@@ -81,29 +78,26 @@ def test_db():
   res = 'This is a response from the API'
   return Response(200, res).serialize()
 
-@app.route('/login', methods=['POST', 'GET'])
-def login(): 
-  global test
-  global username
-  global password 
-  if request.method == 'POST': 
-    document = request.form.to_dict()
-    username = document['username']
-    password = document['password']
-    mongo.db.users.insert_one({
-      "username": username,
-      "password": password 
-    })
-    #emailEntered = document['fsuEmail'].lower()
-    #passwordEntered = document['password']
-    return redirect("http://localhost:5000/login")
-     
-  elif request.method == 'GET':
-    var = "username: " + username + "|||||||" + "password: " + password 
-    return Response(200, var).serialize()
-
 @app.route('/registration', methods=['POST', 'GET'])
 def registration(): 
    return render_template('registration.html')
+  
+@app.route('/login', methods=['POST', 'GET'])
+def loginPage(): 
+  if request.method == 'GET':
+    return render_template('login.html')
+  if request.method == 'POST':
+    document = request.form.to_dict()
+    email = document['email'].lower()
+    password = document['password']
+
+    user = mongo.db.users.find_one({'email': email})
+    if user is None:
+      return "the user doesn't exist"
+    correctPassword = bcrypt.checkpw(password.encode('utf8'), user['password'])
+    if correctPassword == True:
+      return "Welcome " + user['firstName']
+    else:
+      return "invalid password" 
 
     
