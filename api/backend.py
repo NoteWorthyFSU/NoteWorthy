@@ -15,7 +15,7 @@ cors(app, resources={r"*": {"origins": "*"}}, headers=['Content-Type'], expose_h
 
 uri = "mongodb://app:noteworthy@backend-shard-00-00-7dz25.mongodb.net:27017,backend-shard-00-01-7dz25.mongodb.net:27017,backend-shard-00-02-7dz25.mongodb.net:27017/test?ssl=true&replicaSet=backend-shard-0&authSource=admin&retryWrites=true&w=majority"
 client = MongoClient(uri)
-
+#?ssl=true&ssl_cert_reqs=CERT_NONE 
 app.secret_key = 'mysecret' 
 
 # Init MongoDB Connection and run sample query to test authentication
