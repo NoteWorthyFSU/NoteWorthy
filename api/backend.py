@@ -1,13 +1,14 @@
-from flask import Flask, request, redirect, render_template
+from flask import Flask, request, redirect, render_template, session
 from flask_cors import CORS as cors
 from flask_pymongo import PyMongo
 import bcrypt
 from response import Response
 from pymongo import MongoClient
 
-global test 
-global username
-global password 
+
+isInvalid = False
+isDuplicate = False
+isLoggedIn = False
 
 app = Flask(__name__)
 
@@ -24,6 +25,9 @@ mongo = PyMongo(app)
 
 @app.route('/register', methods=['GET', 'POST'])
 def home():
+  global isInvalid
+  global isDuplicate
+
   if request.method == 'GET':   
     return render_template('register.html')
   if request.method == 'POST':
@@ -37,8 +41,13 @@ def home():
     user = mongo.db.users.find_one({'email': email})
 
     if user is not None:
+      isInvalid = False
+      isDuplicate = True
       return "User already exists."
     else:
+      isInvalid = False
+      isDuplicate = False
+
       mongo.db.users.insert_one({
         'firstName': firstName,
         'lastName': lastName,
@@ -47,10 +56,14 @@ def home():
       })
       verifiedUser = mongo.db.users.find_one({'email': email})
 
+      # Flagged for deletion 
       if verifiedUser is None:
         return "The API reported an error"
       else:
-        return ("Welcome " +  verifiedUser['firstName'] )
+        isLoggedIn = True
+        session['username'] = str(verifiedUser['_id'])
+        return (session['username'])
+
 
       #redirect("http://localhost:5000/postRegister")
 
@@ -84,6 +97,9 @@ def registration():
   
 @app.route('/login', methods=['POST', 'GET'])
 def loginPage(): 
+
+  global isInvalid
+  global isDuplicate
   if request.method == 'GET':
     return render_template('login.html')
   if request.method == 'POST':
@@ -93,11 +109,66 @@ def loginPage():
 
     user = mongo.db.users.find_one({'email': email})
     if user is None:
-      return "the user doesn't exist"
+      isInvalid = True
+      isDuplicate = False
+      return "Invalid Credentials"
     correctPassword = bcrypt.checkpw(password.encode('utf8'), user['password'])
     if correctPassword == True:
-      return "Welcome " + user['firstName']
+      isInvalid = False
+      isDuplicate = False
+    
+      session['username'] = str(user['_id'])
+      isLoggedIn = True
+      return (session['username'])
     else:
-      return "invalid password" 
+      isInvalid = True
+      isDuplicate = False
+      return "Invalid Credentials" 
+
+@app.route('/status', methods=['GET'])
+def status():
+  global isInvalid 
+  global isDuplicate
+
+  if(isInvalid == False and isDuplicate == False) : 
+    isInvalid = False
+    isDuplicate = False
+    return "successful"
+  elif(isInvalid == False and isDuplicate == True) : 
+    isInvalid = False
+    isDuplicate = False
+    return "duplicate"
+  elif(isInvalid == True and isDuplicate == False) : 
+    isInvalid = False
+    isDuplicate = False
+    return "invalid"
+
+
+
+  return("isInvalid" + str(isInvalid) + '\n' + "isDuplicate" + str(isDuplicate))
+  
 
     
+@app.route('/logout', methods=['POST'])
+def logout():
+  global isLoggedIn 
+
+  # FIX THIS (ERROR CHECKING)
+  if(request.method == 'POST') : 
+    session.pop('username')
+    
+    if('username' in session) : 
+      return "There was an error logging out"
+
+    isLoggedIn = False
+    return "Goodbye"
+
+
+@app.route('/isLoggedIn', methods=['GET'])
+def isLoggedIn() :
+
+  if('username' in session) :
+    return str(True) 
+  else :
+    return str(False)
+  
