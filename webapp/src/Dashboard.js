@@ -85,7 +85,7 @@ class Dashboard extends React.Component {
         </ul>
       </div>
       </li>
-      <li> <a href="#">Log Out </a></li>
+      <li> <a href="#">Log Out</a></li>
       </ul>
       </div>
       </body>
@@ -95,4 +95,3 @@ class Dashboard extends React.Component {
     }
   }
   export default Dashboard
-

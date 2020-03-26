@@ -16,8 +16,8 @@ cors(app, resources={r"*": {"origins": "*"}}, headers=['Content-Type'], expose_h
 
 uri = "mongodb://app:noteworthy@backend-shard-00-00-7dz25.mongodb.net:27017,backend-shard-00-01-7dz25.mongodb.net:27017,backend-shard-00-02-7dz25.mongodb.net:27017/test?ssl=true&replicaSet=backend-shard-0&authSource=admin&retryWrites=true&w=majority"
 client = MongoClient(uri)
-#?ssl=true&ssl_cert_reqs=CERT_NONE 
-app.secret_key = 'mysecret' 
+#?ssl=true&ssl_cert_reqs=CERT_NONE
+app.secret_key = 'mysecret'
 
 # Init MongoDB Connection and run sample query to test authentication
 app.config["MONGO_URI"] = uri
@@ -28,7 +28,7 @@ def home():
   global isInvalid
   global isDuplicate
 
-  if request.method == 'GET':   
+  if request.method == 'GET':
     return render_template('register.html')
   if request.method == 'POST':
     document = request.form.to_dict()
@@ -36,7 +36,7 @@ def home():
     lastName = document['lastname']
     email = document['email']
     rawPassword = document['password'].encode('utf-8')
-    
+
     hashedPassword = bcrypt.hashpw(rawPassword, bcrypt.gensalt())
     user = mongo.db.users.find_one({'email': email})
 
@@ -56,16 +56,15 @@ def home():
       })
       verifiedUser = mongo.db.users.find_one({'email': email})
 
-      # Flagged for deletion 
+      # Flagged for deletion
       if verifiedUser is None:
         return "The API reported an error"
       else:
         isLoggedIn = True
         session['username'] = str(verifiedUser['_id'])
-        return (session['username'])
+        return redirect("http://localhost5000/dashboard")
 
 
-      #redirect("http://localhost:5000/postRegister")
 
 @app.route('/postRegister')
 def postReg():
@@ -92,11 +91,11 @@ def test_db():
   return Response(200, res).serialize()
 
 @app.route('/registration', methods=['POST', 'GET'])
-def registration(): 
+def registration():
    return render_template('registration.html')
-  
+
 @app.route('/login', methods=['POST', 'GET'])
-def loginPage(): 
+def loginPage():
 
   global isInvalid
   global isDuplicate
@@ -116,29 +115,29 @@ def loginPage():
     if correctPassword == True:
       isInvalid = False
       isDuplicate = False
-    
+
       session['username'] = str(user['_id'])
       isLoggedIn = True
-      return (session['username'])
+      return redirect("http://localhost:3000/dashboard")
     else:
       isInvalid = True
       isDuplicate = False
-      return "Invalid Credentials" 
+      return "Invalid Credentials"
 
 @app.route('/status', methods=['GET'])
 def status():
-  global isInvalid 
+  global isInvalid
   global isDuplicate
 
-  if(isInvalid == False and isDuplicate == False) : 
+  if(isInvalid == False and isDuplicate == False) :
     isInvalid = False
     isDuplicate = False
     return "successful"
-  elif(isInvalid == False and isDuplicate == True) : 
+  elif(isInvalid == False and isDuplicate == True) :
     isInvalid = False
     isDuplicate = False
     return "duplicate"
-  elif(isInvalid == True and isDuplicate == False) : 
+  elif(isInvalid == True and isDuplicate == False) :
     isInvalid = False
     isDuplicate = False
     return "invalid"
@@ -146,29 +145,28 @@ def status():
 
 
   return("isInvalid" + str(isInvalid) + '\n' + "isDuplicate" + str(isDuplicate))
-  
 
-    
+
+
 @app.route('/logout', methods=['POST'])
 def logout():
-  global isLoggedIn 
+  global isLoggedIn
 
   # FIX THIS (ERROR CHECKING)
-  if(request.method == 'POST') : 
+  if(request.method == 'POST') :
     session.pop('username')
-    
-    if('username' in session) : 
+
+    if('username' in session) :
       return "There was an error logging out"
 
     isLoggedIn = False
-    return "Goodbye"
+    return redirect("http://localhost:3000/")
 
 
 @app.route('/isLoggedIn', methods=['GET'])
 def isLoggedIn() :
 
   if('username' in session) :
-    return str(True) 
+    return str(True)
   else :
     return str(False)
-  

@@ -13,8 +13,7 @@ import * as serviceWorker from './serviceWorker';
 const routing = (
   <Router>
     <Switch>
-      <Route exact path="/" component={App}/>
-      <Route  exact path="/login" component={Login}/>
+      <Route exact path="/" component={Login}/>
       <Route  exact path="/Notes" component={Notes}/>
       <Route  exact path="/Dashboard" component={Dashboard}/>
       <Route exact path="/*" component={Error}/>

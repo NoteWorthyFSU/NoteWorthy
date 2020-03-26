@@ -2,7 +2,7 @@
 
 body{
   background-color: #2b7a78;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-variant: light;
   padding: 0%;
   margin: 0%;
@@ -14,7 +14,7 @@ body{
 }*/
 
 body::after{
-  
+
   background-image: url("https://ak1.picdn.net/shutterstock/videos/3286601/thumb/1.jpg");
   z-index: -1;
   position: absolute;
@@ -63,7 +63,7 @@ h4 {
   height: 80%;
   margin-left: 23vw;
   box-shadow: 10px 10px 20px black;
-  position: relative;  
+  position: relative;
 }
 
 .noteWorthy{
@@ -80,7 +80,7 @@ h4 {
   width: 25vw;
   height: 5vw;
   font-size: 1.736vw;
-  
+
 }
 
 .userInput[type=text]{
@@ -142,7 +142,7 @@ input[type=password]:focus {
 
 .userInput:hover[type=submit]{
   background-color: #2b7a78;
-  
+
 }
 
   *
@@ -150,26 +150,26 @@ input[type=password]:focus {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  
+
   }
   body{
   background: url(hi.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   }
-  
+
   .menu-bar
   {
   background-color: #17252A;
   text-align: center;
   }
-  
+
   .menu-bar ul
   {
   display: inline-flex;
   list-style: none;
   color: #fff;
-  
+
   }
   .menu-bar ul li
   {
@@ -177,24 +177,29 @@ input[type=password]:focus {
   margin: 15px;
   padding: 15px;
   }
-  
-  .menu-bar ul li a
+
+  .menu-bar ul li a .menu-bar ul li button
+    {
+    width: 120px;
+    margin: 15px;
+    padding: 15px;
+    }
   {
   color: #fff;
   text-decoration: none;
   }
-  
+
   .active, .menu-bar ul li:hover
   {
   background-color: #509693;
   border-radius: 3px;
   }
-  
+
   .sub-menu-1
   {
   display: none;
   }
-  
+
   .menu-bar ul li:hover .sub-menu-1
   {
   display: block;
@@ -203,13 +208,13 @@ input[type=password]:focus {
   margin-top: 15px;
   margin-left: -15px;
   }
-  
+
   .menu-bar ul li:hover .sub-menu-1 ul
   {
   display: block;
   margin: 10px;
   }
-  
+
   .menu-bar ul li:hover .sub-menu-1 ul li
   {
   width:150px;
@@ -219,22 +224,22 @@ input[type=password]:focus {
   border-radius: 0;
   text-align: left;
   }
-  
+
   .menu-bar ul li:hover .sub-menu-1 ul li:last child
   {
   border-bottom: none;
   }
-  
+
   .fa-angle-right
   {
     float: right;
   }
-  
+
   .sub-menu-2
   {
   display: none;
   }
-  
+
   .hover-me:hover .sub-menu-2
   {
     position: absolute;
@@ -243,4 +248,3 @@ input[type=password]:focus {
     margin-left: 140px;
     background-color: #17252A;
   }
-
