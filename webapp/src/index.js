@@ -4,6 +4,7 @@ import App from './App';
 import Login from './Login';
 import Notes from './Notes';
 import Error from './Error';
+import Dashboard from './Dashboard';
 import { Redirect, Switch, Route, BrowserRouter as Router, Link } from 'react-router-dom';
 import {render} from 'react-dom';
 import './noteworthy.css'
@@ -15,6 +16,7 @@ const routing = (
       <Route exact path="/" component={App}/>
       <Route  exact path="/login" component={Login}/>
       <Route  exact path="/Notes" component={Notes}/>
+      <Route  exact path="/Dashboard" component={Dashboard}/>
       <Route exact path="/*" component={Error}/>
     </Switch>
   </Router>
