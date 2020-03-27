@@ -12,19 +12,18 @@ class Dashboard extends React.Component {
 
   render() {
     return (<div>
-      <form action = 'http://localhost:5000/dashboard' method = 'POST'>
+      <form action = 'http://localhost:3000/dashboard' method = 'POST'>
       <html>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
       <body>
       <div className = "menu-bar">
       <ul>
-      <li> <a href="#">Home</a> </li>
+      <li> <a href="http://localhost:3000/dashboard">Home</a> </li>
       <li> <a href="#">About Us </a>
       <div className="sub-menu-1">
         <ul>
-          <li> <a href="#">Mission </a></li>
-          <li> <a href="#">Vision</a></li>
-          <li> <a href="#">Meet Our Team</a></li>
+          <li> <a href="http://localhost:3000/mission">Mission + Vision </a></li>
+          <li> <a href="http://localhost:3000/meetourteam">Meet Our Team</a></li>
         </ul>
       </div>
       </li>
@@ -73,19 +72,19 @@ class Dashboard extends React.Component {
       <li> <a href="#">Settings </a>
         <div className="sub-menu-1">
           <ul>
-            <li> <a href="#">Update Profile</a></li>
-            <li> <a href="#">Change Password</a></li>
+            <li> <a href="http://localhost:3000/updateprofile">Update Profile</a></li>
+            <li> <a href="http://localhost:3000/changepassword">Change Password</a></li>
           </ul>
         </div>
         </li>
-      <li> <a href="#">Contact </a>
+      <li> <a href="http://localhost:3000/contactus">Contact </a>
       <div className="sub-menu-1">
         <ul>
-          <li> <a href="#">Get Support</a></li>
+          <li> <a href="http://localhost:3000/contactus">Get Support</a></li>
         </ul>
       </div>
       </li>
-      <li> <a href="#">Log Out</a></li>
+      <li> <a href="http://localhost:3000/">Log Out </a></li>
       </ul>
       </div>
       </body>

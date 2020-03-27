@@ -5,6 +5,14 @@ import Login from './Login';
 import Notes from './Notes';
 import Error from './Error';
 import Dashboard from './Dashboard';
+import ContactUs from './ContactUs';
+import Mission from './Mission';
+import UpdateProfile from './UpdateProfile';
+import ChangePassword from './ChangePassword';
+import MeetOurTeam from './MeetOurTeam';
+
+
+
 import { Redirect, Switch, Route, BrowserRouter as Router, Link } from 'react-router-dom';
 import {render} from 'react-dom';
 import './noteworthy.css'
@@ -16,6 +24,11 @@ const routing = (
       <Route exact path="/" component={Login}/>
       <Route  exact path="/Notes" component={Notes}/>
       <Route  exact path="/Dashboard" component={Dashboard}/>
+      <Route  exact path="/ContactUs" component={ContactUs}/>
+      <Route  exact path="/Mission" component={Mission}/>
+      <Route  exact path="/UpdateProfile" component={UpdateProfile}/>
+      <Route  exact path="/ChangePassword" component={ChangePassword}/>
+      <Route  exact path="/MeetOurTeam" component={MeetOurTeam}/>
       <Route exact path="/*" component={Error}/>
     </Switch>
   </Router>
