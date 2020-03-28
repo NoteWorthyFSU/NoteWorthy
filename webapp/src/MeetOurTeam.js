@@ -27,7 +27,7 @@ class MeetOurTeam extends React.Component {
         <div class="team">
           <div class="team_member">
           <div class="team_img">
-        <img src={require('/Users/lexiewebel/Desktop/To Do/NoteWorthy/webapp/src/circle-cropped.png')} />
+        <img src={('circle-cropped.png')} />
       </div>
             <h3>Lexie Webel</h3>
             <p class="role">UI developer</p>
@@ -35,7 +35,7 @@ class MeetOurTeam extends React.Component {
           </div>
           <div class="team_member">
           <div class="team_img">
-        <img src={require('/Users/lexiewebel/Desktop/To Do/NoteWorthy/webapp/src/team1.png')} />
+        <img src={('team1.png')} />
       </div>
             <h3>Daimeun Praytor</h3>
             <p class="role">UI Developer</p>
@@ -43,7 +43,7 @@ class MeetOurTeam extends React.Component {
 
           <div class="team_member">
           <div class="team_img">
-        <img src={require('/Users/lexiewebel/Desktop/To Do/NoteWorthy/webapp/src/circle-cropped2.png')} />
+        <img src={('circle-cropped2.png')} />
       </div>
             <h3>Orlando Kenny</h3>
             <p class="role">Backend developer</p>
@@ -52,7 +52,7 @@ class MeetOurTeam extends React.Component {
 
           <div class="team_member">
           <div class="team_img">
-        <img src={require('/Users/lexiewebel/Desktop/To Do/NoteWorthy/webapp/src/circle-cropped4.png')} />
+        <img src={('circle-cropped4.png')} />
       </div>
             <h3>Humbert Tores</h3>
             <p class="role">Backend developer</p>
@@ -60,7 +60,7 @@ class MeetOurTeam extends React.Component {
           </div>
           <div class="team_member">
           <div class="team_img">
-        <img src={require('/Users/lexiewebel/Desktop/To Do/NoteWorthy/webapp/src/circle-cropped5.png')} />
+        <img src={('circle-cropped5.png')} />
       </div>
             <h3>Tyler Gurly</h3>
             <p class="role">Notes Developer</p>
@@ -68,7 +68,7 @@ class MeetOurTeam extends React.Component {
           </div>
           <div class="team_member">
           <div class="team_img">
-        <img src={require('/Users/lexiewebel/Desktop/To Do/NoteWorthy/webapp/src/team1.png')} />
+        <img src={('team1.png')} />
       </div>
             <h3>David Mendleson</h3>
             <p class="role">Notes Developer</p>
