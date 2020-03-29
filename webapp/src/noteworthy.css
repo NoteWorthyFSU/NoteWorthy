@@ -380,7 +380,26 @@ form . submit:hover
 
 .notes{
   margin-left: 5vw;
+  width: 500px;
+  word-wrap:break-word;
 }
 .grab{
   opacity: 0%;
+}
+
+.renderDiv{
+  width: 500px;
+}
+
+.currentTopic{
+  width: 30%;
+  height: 20%;
+  
+  
+  top: 0;
+  text-align: right;
+  right: 0;
+  position: fixed;   
+  
+  font-size: 1.736vw;
 }

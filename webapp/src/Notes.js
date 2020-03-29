@@ -26,13 +26,14 @@ class Notes extends React.Component {
 
         return(
         <div id="main">
-            <div id="render">
+            <div className ="renderDiv" id="render">
                 {this.renderList()}
             </div>
             <h1 id = "temptitle">{this.state.tempTitle}</h1>
-            <p align="right">current Topic: {this.state.currentTopic}</p>
+            <p className="currentTopic">current Topic: {this.state.currentTopic}</p>
             <p className= "notes" id = "current">{this.state.cNotes}</p>
-            <form>
+            <form action='http://localhost:5000/saveNotes' method="POST">
+                <button type="submit">Submit</button>
                 <textarea autofocus id="area" className = "noteBox" rows="50" cols="50"  
                     onChange={evt => this.update(evt)} onKeyDown={evt => this.keyIn(evt)} />
             </form>
@@ -60,7 +61,8 @@ class Notes extends React.Component {
         // goes through each main topic
         for(x of topics)
         {
-           var div = document.createElement("DIV") 
+           var div = document.createElement("DIV")
+           div.style.wordWrap="break-word" 
            var title = document.createElement("H1")
            title.appendChild(document.createTextNode(x))
            div.appendChild(title)
@@ -76,7 +78,6 @@ class Notes extends React.Component {
            }
            div.appendChild(subNotes)
            doc.appendChild(div)
-            
         }
     }
 
