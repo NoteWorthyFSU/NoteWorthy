@@ -388,9 +388,12 @@ form . submit:hover
 }
 
 .renderDiv{
+  background-color: #a9ac2579;
   width: 500px;
 }
-
+.cards{
+  background-color: #fff;
+}
 .currentTopic{
   width: 30%;
   height: 20%;

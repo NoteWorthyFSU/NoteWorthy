@@ -18,9 +18,7 @@ class Notes extends React.Component {
             prevKey: 0,
             inArrow: false
         }
-
     }
-
 
     render(){
 
