@@ -1,0 +1,110 @@
+body::after{
+
+  background-image: url("https://ak1.picdn.net/shutterstock/videos/3286601/thumb/1.jpg");
+  z-index: -1;
+  position: absolute;
+  opacity: 0.5;
+}
+
+h1 {
+  font-size: 4vh;
+  color: #17252A;
+}
+
+h2 {
+  font-size: 4vh;
+  color: #17252A;
+}
+
+h3 {
+  font-size: 4vh;
+  color: #3AAFA9;
+}
+
+h4 {
+  font-size: 4vh;
+  color: #fff;
+}
+
+.noteBox{
+  background-color: #17252A;
+  width: 99.9%;
+  height: 150px;
+
+  box-shadow: 10px 10px 20px black;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 10px;
+  position: relative;
+  y-index: 1;
+  resize: none;
+
+  font-size: 1.736vw;
+
+  color: white;
+  font-family: consolas;
+}
+
+.notes{
+  margin-left: 5vw;
+  width: 404px;
+  word-wrap:break-word;
+}
+.grab{
+  opacity: 0%;
+}
+
+.renderDiv{
+  background-color: #a9ac2579;
+  width: 500px;
+}
+
+.currentTopic{
+  width: 30%;
+  height: 20%;
+
+
+  top: 76px;
+  text-align: right;
+  right: 0;
+  position: fixed;
+
+  font-size: 1.736vw;
+}
+
+.cards{
+  border-bottom-style: solid;
+  border-right-style: solid;
+  border-bottom-color: black;
+  border-right-color: black;
+  border-bottom-width: 10px;
+  border-right-width: 10px;
+  border-radius: 25px;
+  word-wrap: break-word;
+  background-color: #ffffff;
+  width: 750px;
+  margin: 0 auto;
+  opacity: 75%;
+}
+
+.savebutton{
+  margin: 0 auto;
+  display: block;
+  border-radius: 25px;
+  width: 125px;
+  background-color: white;
+  color: black;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  transition: 0.5s;
+}
+
+.savebutton:hover{
+  color: white;
+  background-color: black;
+  border-style: solid;
+  border-color: white;
+  border-width: 1px;
+}
