@@ -1,5 +1,5 @@
 import React from 'react';
-import './noteworthy.css';
+import './notes.css';
 
 class Notes extends React.Component {
 
@@ -21,24 +21,103 @@ class Notes extends React.Component {
     }
 
     render(){
-
         return(
         <div id="main">
-            <div className ="renderDiv" id="render">
+        <div>
+          <form action = 'http://localhost:3000/dashboard' method = 'POST'>
+          <html>
+          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+          <body>
+          <div className = "menu-bar">
+          <ul>
+          <li> <a href="http://localhost:3000/dashboard">Home</a> </li>
+          <li> <a href="#">About Us </a>
+          <div className="sub-menu-1">
+            <ul>
+              <li> <a href="http://localhost:3000/mission">Mission + Vision </a></li>
+              <li> <a href="http://localhost:3000/meetourteam">Meet Our Team</a></li>
+            </ul>
+          </div>
+          </li>
+          <li> <a href="#">Classes </a>
+          <div className="sub-menu-1">
+            <ul>
+              <li class ="hover-me"> <a href="#">Biology 1 </a> <i class="fa fa-angle-right"></i>
+              <div className="sub-menu-2">
+                <ul>
+                  <li> <a href="#">Note #1 </a></li>
+                  <li> <a href="#">Note #2</a></li>
+                  <li> <a href="#">Note #3</a></li>
+                </ul>
+              </div>
+              </li>
+              <li class ="hover-me"> <a href="#">Programming Languages</a><i class="fa fa-angle-right"></i>
+              <div className="sub-menu-2">
+                <ul>
+                  <li> <a href="#">Note #1 </a></li>
+                  <li> <a href="#">Note #2</a></li>
+                  <li> <a href="#">Note #3</a></li>
+                </ul>
+              </div>
+              </li>
+              <li class ="hover-me"> <a href="#">Spanish 3</a><i class="fa fa-angle-right"></i>
+              <div className="sub-menu-2">
+                <ul>
+                  <li> <a href="#">Note #1 </a></li>
+                  <li> <a href="#">Note #2</a></li>
+                  <li> <a href="#">Note #3</a></li>
+                </ul>
+              </div>
+              </li>
+              <li class ="hover-me"> <a href="#">Software Engineering</a><i class="fa fa-angle-right"></i>
+              <div className="sub-menu-2">
+                <ul>
+                  <li> <a href="#">Note #1 </a></li>
+                  <li> <a href="#">Note #2</a></li>
+                  <li> <a href="#">Note #3</a></li>
+                </ul>
+              </div>
+              </li>
+            </ul>
+          </div>
+          </li>
+          <li> <a href="#">Settings </a>
+            <div className="sub-menu-1">
+              <ul>
+                <li> <a href="http://localhost:3000/updateprofile">Update Profile</a></li>
+                <li> <a href="http://localhost:3000/changepassword">Change Password</a></li>
+              </ul>
+            </div>
+            </li>
+          <li> <a href="http://localhost:3000/contactus">Contact </a>
+          <div className="sub-menu-1">
+            <ul>
+              <li> <a href="http://localhost:3000/contactus">Get Support</a></li>
+            </ul>
+          </div>
+          </li>
+          <li> <a href="http://localhost:3000/">Log Out </a></li>
+          </ul>
+          </div>
+          </body>
+          </html>
+          </form>
+          </div>
+            <div className ="cards" id="render">
                 {this.renderList()}
             </div>
             <h1 id = "temptitle">{this.state.tempTitle}</h1>
             <p className="currentTopic">current Topic: {this.state.currentTopic}</p>
             <p className= "notes" id = "current">{this.state.cNotes}</p>
             <form action='http://localhost:5000/saveNotes' method="POST">
-                <button type="submit">Submit</button>
-                <textarea autofocus id="area" className = "noteBox" rows="50" cols="50"  
+                <button className="savebutton" type="submit">Submit</button>
+                <textarea autofocus id="area" className = "noteBox" rows="50" cols="50"
                     onChange={evt => this.update(evt)} onKeyDown={evt => this.keyIn(evt)} />
             </form>
             <input className ="grab" type="text" onFocus={function(){
                 document.getElementById("area").focus()
             }}/>
-        </div>)
+        </div>);
     }
 
     renderList()
@@ -46,13 +125,13 @@ class Notes extends React.Component {
         var Notes = this.state.notes
         var doc = document.getElementById("render")
         if(doc)
-        { 
+        {
             while(doc.firstChild)
             {
                 doc.removeChild(doc.firstChild)
             }
         }
-        
+
         var topics = this.state.topics
         var notes = this.state.notes
         var x
@@ -60,7 +139,7 @@ class Notes extends React.Component {
         for(x of topics)
         {
            var div = document.createElement("DIV")
-           div.style.wordWrap="break-word" 
+           div.style.wordWrap="break-word"
            var title = document.createElement("H1")
            title.appendChild(document.createTextNode(x))
            div.appendChild(title)
@@ -103,7 +182,7 @@ class Notes extends React.Component {
         var notes = this.state.notes
         var cTopic = notes.get(this.state.currentTopic)
         //alert(cTopic)
-        var pos 
+        var pos
         if(cTopic){pos= cTopic.length - 1-  this.state.currentNote}
         //console.log(pos)
         if(pos < 0 && pos >= -1 && this.state.topics.length > 1 && this.state.topicNum > 1)
@@ -112,7 +191,7 @@ class Notes extends React.Component {
             this.setState({topicNum: this.state.topicNum-1})
             this.setState({currentTopic: this.state.topics[this.state.topicNum-2]})
             cTopic = notes.get(this.state.topics[this.state.topicNum-2])
-            
+
             var toChange = cTopic[cTopic.length-1]
             this.setState({cNotes: toChange})
             document.getElementById("area").value = toChange
@@ -127,7 +206,7 @@ class Notes extends React.Component {
         else{
             this.setState({currentNote: 0})
         }
-        
+
     }
 
 
@@ -154,7 +233,7 @@ class Notes extends React.Component {
             // checks if adding note
             else if(this.state.prevKey != 9 && this.state.titleSet == true)
             {
-                
+
                 var box = document.getElementById("area")
                 var temp = this.state.notes
                 temp.get(this.state.currentTopic).push(box.value)
@@ -180,11 +259,11 @@ class Notes extends React.Component {
             notes.set(this.state.currentTopic,cTopic)
             if(this.state.topics.length != this.state.topicNum)
             {
-                this.setState({notes: notes, topicNum: this.state.topics.length, 
+                this.setState({notes: notes, topicNum: this.state.topics.length,
                     currentTopic: this.state.topics[this.state.topics.length - 1]})
             }
             this.setState({notes: notes,currentNote: 0,prevKey: 0,cNotes: "",inArrow: false})
-            
+
         }
     }
 
