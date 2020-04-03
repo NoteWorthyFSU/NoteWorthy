@@ -99,6 +99,7 @@ h4 {
   border-color: black;
   border-width: 1px;
   transition: 0.5s;
+  margin-top: 5vw;
 }
 
 .savebutton:hover{
@@ -107,4 +108,12 @@ h4 {
   border-style: solid;
   border-color: white;
   border-width: 1px;
+}
+
+.menu-bar
+{
+background-color: #17252A;
+text-align: center;
+z-index: 999;
+position: relative;
 }
