@@ -64,7 +64,7 @@ class MeetOurTeam extends React.Component {
       </div>
             <h3>Tyler Gurly</h3>
             <p class="role">Notes Developer</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quaerat tempora, voluptatum quas facere dolorum aut cumque nihil nulla harum nemo distinctio quam blanditiis dignissimos.</p>
+            <p>I am a senior studying Computer Science at Florida State University. I will be graduating on May 1st, 2020. I had my first 'real-world' technology based job at J&J Management in Summer 2019 as an IT Intern. I enjoy problem solving and taking challenges head on! I fell in love with technology at a young age through gaming.</p>
           </div>
           <div class="team_member">
           <div class="team_img">
