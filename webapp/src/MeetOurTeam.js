@@ -27,7 +27,7 @@ class MeetOurTeam extends React.Component {
         <div class="team">
           <div class="team_member">
           <div class="team_img">
-        <img src={require('/Users/lexiewebel/Desktop/To Do/NoteWorthy/webapp/src/circle-cropped.png')} />
+        <img src={require('/Users/lexiewebel/Desktop/Group Project Repos/NoteWorthy/webapp/src/circle-cropped.png')} />
       </div>
             <h3>Lexie Webel</h3>
             <p class="role">UI developer</p>
@@ -35,24 +35,24 @@ class MeetOurTeam extends React.Component {
           </div>
           <div class="team_member">
           <div class="team_img">
-        <img src={require('/Users/lexiewebel/Desktop/To Do/NoteWorthy/webapp/src/team1.png')} />
+        <img src={require('/Users/lexiewebel/Desktop/Group Project Repos/NoteWorthy/webapp/src/circle-cropped.png')} />
       </div>
             <h3>Daimeun Praytor</h3>
             <p class="role">UI Developer</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quaerat tempora, voluptatum quas facere dolorum aut cumque nihil nulla harum nemo distinctio quam blanditiis dignissimos.</p></div>
-
+            <p></p>
+            </div>
           <div class="team_member">
           <div class="team_img">
-        <img src={require('/Users/lexiewebel/Desktop/To Do/NoteWorthy/webapp/src/circle-cropped2.png')} />
+        <img src={require('/Users/lexiewebel/Desktop/Group Project Repos/NoteWorthy/webapp/src/circle-cropped2.png')} />
       </div>
             <h3>Orlando Kenny</h3>
             <p class="role">Backend developer</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quaerat tempora, voluptatum quas facere dolorum aut cumque nihil nulla harum nemo distinctio quam blanditiis dignissimos.</p>
+            <p>I am currently a sophomore pursuing a Bachelor of Science in Computer Science degree at the Florida State University. My strong suits are my curiosity and my willingness to learn and delve into projects that may be overwhelming at first. I am passionate about being able to apply the knowledge that I have obtained to computer software!</p>
           </div>
 
           <div class="team_member">
           <div class="team_img">
-        <img src={require('/Users/lexiewebel/Desktop/To Do/NoteWorthy/webapp/src/circle-cropped4.png')} />
+        <img src={require('/Users/lexiewebel/Desktop/Group Project Repos/NoteWorthy/webapp/src/circle-cropped4.png')} />
       </div>
             <h3>Humbert Tores</h3>
             <p class="role">Backend developer</p>
@@ -60,19 +60,19 @@ class MeetOurTeam extends React.Component {
           </div>
           <div class="team_member">
           <div class="team_img">
-        <img src={require('/Users/lexiewebel/Desktop/To Do/NoteWorthy/webapp/src/circle-cropped5.png')} />
+        <img src={require('/Users/lexiewebel/Desktop/Group Project Repos/NoteWorthy/webapp/src/circle-cropped5.png')} />
       </div>
             <h3>Tyler Gurly</h3>
             <p class="role">Notes Developer</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quaerat tempora, voluptatum quas facere dolorum aut cumque nihil nulla harum nemo distinctio quam blanditiis dignissimos.</p>
+            <p></p>
           </div>
           <div class="team_member">
           <div class="team_img">
-        <img src={require('/Users/lexiewebel/Desktop/To Do/NoteWorthy/webapp/src/team1.png')} />
+        <img src={require('/Users/lexiewebel/Desktop/Group Project Repos/NoteWorthy/webapp/src/team1.png')} />
       </div>
             <h3>David Mendleson</h3>
             <p class="role">Notes Developer</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quaerat tempora, voluptatum quas facere dolorum aut cumque nihil nulla harum nemo distinctio quam blanditiis dignissimos.</p>
+            <p></p>
           </div>
         </div>
         </div>
