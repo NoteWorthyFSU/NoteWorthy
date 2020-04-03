@@ -1,137 +1,209 @@
 import React from 'react';
-import './noteworthy.css';
-import InBox from './InBox';
-/*
-function  tabs ()
-{
-    document.body.addEventListener('keydown', function(e) {
-        if(e.keyCode === 9)
-        {
-            alert("3223")
-            return (<div><h1>Poop</h1></div>);
-        }
-       return null
-    });
-}*/
+import './notes.css';
+import Dashboard from './Dashboard.js'
 
-var cN = "poop";
 class Notes extends React.Component {
-    constructor(){
+
+    constructor()
+    {
         super();
         this.state = {
-            Title: "temp",
-            Notes: [],
-            currentNotes: "fart",
-            lastUpdate: new Date().getSeconds(),
-            totalNotes: 0 
+            cNotes: " ",
+            notes: new Map(),
+            topics: [],
+            currentTopic: " ",
+            topicNum: 0,
+            tempTitle: " ",
+            currentNote: 0,
+            titleSet: false,
+            prevKey: 0,
+            inArrow: false
         }
-       // this.tabs = this.tabs.binds(this);
     }
-    getCN()
-    {
-        return cN;
-    }
-    handle(e){
-        alert("handle");
-        this.setState({currentNotes: e.target.value});
-    }
-   
+
     render(){
-        return (<div id="main" ref="main">
-            <h1>{this.state.title}</h1>
-            <form >        
-                <input type="hidden" id="temp" onKeyDown={function(e)
-                {
-                    let notes = document.getElementById("currentNotes");
-                    notes.textContent = e.target.value;
-                }} />
-                 {this.tabs()}
-                <input type="text" id = "current" name="Hold" placeholder={this.state.Notes}
-                 onBlur={evt => this.update(evt)}/>       
+        return(
+        <div id="main">
+        <Dashboard>
+        </Dashboard>
+            <div className ="cards" id="render">
+                {this.renderList()}
+            </div>
+            <h1 id = "temptitle">{this.state.tempTitle}</h1>
+            <p className="currentTopic">current Topic: {this.state.currentTopic}</p>
+            <p className= "notes" id = "current">{this.state.cNotes}</p>
+            <form action='http://localhost:5000/saveNotes' method="POST">
+                <button className="savebutton" type="submit" onClick={this.doalert.bind()}>Save</button>
+                <textarea autofocus id="area" className = "noteBox" rows="50" cols="50"
+                    onChange={evt => this.update(evt)} onKeyDown={evt => this.keyIn(evt)} />
             </form>
-           
-            <p id="currentNotes" align="right"> </p>
-
-        </div>);   
+            <input className ="grab" type="text" onFocus={function(){
+                document.getElementById("area").focus()
+            }}/>
+        </div>);
     }
 
-    tabs(){
-        console.log(this.state.totalNotes);
-        function check(e)
+    doalert()
+    {
+      alert("Test");
+    }
+
+    renderList()
+    {
+        var Notes = this.state.notes
+        var doc = document.getElementById("render")
+        if(doc)
         {
-            //alert(e.keyCode)
-            if(e.keyCode ===  9)
-             {
-                // minimizes previous
-               
-                var prev= document.getElementById("current")
-                prev.setAttribute("value","");
-                prev.setAttribute("id","used");
-                prev.setAttribute("type","image");    
-                prev.setAttribute("width","100");  
-                prev.setAttribute("ref","prev");  
-                var div= document.getElementById("main")
-                let templet = document.getElementById("temp");
-                let newIn = document.createElement("input")
-                newIn = Object.assign(newIn, templet);
-                //let newIn = document.createElement("input")
-                var b = document.createElement("br");
-                newIn.setAttribute("type","text");
-                newIn.setAttribute("id","current");
-                newIn.setAttribute("ref","current");
-                /*newIn.addEventListener("onChange",function(e)
-                {
-                    var form = document.getElementById("main")
-                    //let notes = document.createElement("p")
-
-                    //notes.textContent = e.target.value;
-                    let notes = document.createTextNode(e.target.value);
-                    alert(notes)
-                    form.appendChild(notes);
-                })*/
-                var form = document.getElementById("main")
-                let notes = document.getElementById("currentNotes");
-                notes.textContent = " ";
-                
-                form.appendChild(b);
-
-                form.appendChild(newIn);
-                //alert("appended")
-                div.removeEventListener('keydown',e=>check(e));
-                //alert("removed")
-             }
-        }
-        var temp= document.getElementById("current")
-        var main= document.getElementById("main")
-
-        // Only creates new note if current note isnt empty or if
-        // theres only header
-        if(temp != null && this.state.lastUpdate != new Date().getSeconds() )
-        {
-            if(temp.value != "")
+            while(doc.firstChild)
             {
-                var t = this.state.totalNotes + 1;
-                
-                main.addEventListener('keydown', e => check(e));
-                //alert("done")
-                //var cur= document.getElementById("current")
-                
-                this.setState({lastUpdate: new Date().getSeconds()})
-                this.setState({totalNotes: t});
-                
+                doc.removeChild(doc.firstChild)
             }
-                }
-     }
-    cnUpdate(evt){
-       // React.findDomNode(this.refs.current)
-        
-        //this.setState({currentNotes: })
-    } 
-    
-    update(evt){
-        this.setState({title: evt.target.value});
-        
+        }
 
+        var topics = this.state.topics
+        var notes = this.state.notes
+        var x
+        // goes through each main topic
+        for(x of topics)
+        {
+           var div = document.createElement("DIV")
+           div.style.wordWrap="break-word"
+           var title = document.createElement("H1")
+           title.appendChild(document.createTextNode(x))
+           div.appendChild(title)
+           var subNotes = document.createElement("UL")
+           subNotes.className = "notes"
+           var y
+           for(y of notes.get(x))
+           {
+                // dont forget to add wrap around
+                var li = document.createElement("LI")
+                li.appendChild(document.createTextNode(y))
+                subNotes.appendChild(li)
+           }
+           div.appendChild(subNotes)
+           doc.appendChild(div)
+        }
+    }
+
+    keyIn(e)
+    {
+        if(e.keyCode == 9)
+        {
+            this.tab(e)
+        }
+        else if(e.keyCode == 38)
+        {
+            this.upArrow()
+        }
+        else
+        {
+            this.setState({prevKey: e.keyCode})
+        }
+    }
+
+
+    upArrow()
+    {
+        //console.log("up")
+        this.setState({currentNote: this.state.currentNote+1,inArrow: true})
+        var notes = this.state.notes
+        var cTopic = notes.get(this.state.currentTopic)
+        //alert(cTopic)
+        var pos
+        if(cTopic){pos= cTopic.length - 1-  this.state.currentNote}
+        //console.log(pos)
+        if(pos < 0 && pos >= -1 && this.state.topics.length > 1 && this.state.topicNum > 1)
+        {
+            this.setState({currentNote: 1})
+            this.setState({topicNum: this.state.topicNum-1})
+            this.setState({currentTopic: this.state.topics[this.state.topicNum-2]})
+            cTopic = notes.get(this.state.topics[this.state.topicNum-2])
+
+            var toChange = cTopic[cTopic.length-1]
+            this.setState({cNotes: toChange})
+            document.getElementById("area").value = toChange
+           // this.upArrow()
+        }
+        else if(pos >=0)
+        {
+            var toChange = cTopic[pos]
+            this.setState({cNotes: toChange})
+            document.getElementById("area").value = toChange
+        }
+        else{
+            this.setState({currentNote: 0})
+        }
+
+    }
+
+
+    tab(e)
+    {
+        if(this.state.inArrow == false)
+        {
+            // checks if start of topic
+            if(this.state.titleSet == false){
+                this.setState({tempTitle: ""});
+                this.setState({titleSet: true})
+                var box = document.getElementById("area")
+                var temp = this.state.notes
+                var temp2 = this.state.topics
+                //adds to note
+                temp.set(box.value,[])
+                //adds to topics list
+                temp2.push(box.value)
+                this.setState({notes: temp,currentTopic: box.value,
+                    topics: temp2,topicNum: this.state.topicNum + 1})
+                box.value = ""
+                this.setState({prevKey: e.keyCode})
+            }
+            // checks if adding note
+            else if(this.state.prevKey != 9 && this.state.titleSet == true)
+            {
+
+                var box = document.getElementById("area")
+                var temp = this.state.notes
+                temp.get(this.state.currentTopic).push(box.value)
+                this.setState({notes: temp})
+                box.value = ""
+                this.setState({prevKey: e.keyCode,cNotes: ""})
+
+            }
+            // double tab new topic
+            else{
+                this.setState({titleSet: false, currentTopic: ""})
+            }
+        }
+        else{
+            // sets from arrow fix
+            var notes = this.state.notes
+            var cTopic = notes.get(this.state.currentTopic)
+            var pos = cTopic.length - this.state.currentNote
+            var box = document.getElementById("area")
+            var temp = this.state.notes
+            cTopic[pos] = box.value
+            box.value = ""
+            notes.set(this.state.currentTopic,cTopic)
+            if(this.state.topics.length != this.state.topicNum)
+            {
+                this.setState({notes: notes, topicNum: this.state.topics.length,
+                    currentTopic: this.state.topics[this.state.topics.length - 1]})
+            }
+            this.setState({notes: notes,currentNote: 0,prevKey: 0,cNotes: "",inArrow: false})
+
+        }
+    }
+
+    update(evt){
+        if(this.state.titleSet == false)
+        {
+            this.setState({tempTitle: evt.target.value});
+        }
+        else{
+        this.setState({cNotes: evt.target.value});
+        }
     }
 }
+
 export default Notes

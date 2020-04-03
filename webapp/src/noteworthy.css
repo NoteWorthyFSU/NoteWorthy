@@ -363,3 +363,46 @@ form . submit:hover
   position: relative;
   font-size: 20px;
 }
+
+.noteBox{
+  background-color: #17252A;
+  width: 100%;
+  height: 35%;
+  
+  box-shadow: 10px 10px 20px black;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: fixed;   
+  
+  font-size: 1.736vw;
+}
+
+.notes{
+  margin-left: 5vw;
+  width: 500px;
+  word-wrap:break-word;
+}
+.grab{
+  opacity: 0%;
+}
+
+.renderDiv{
+  background-color: #a9ac2579;
+  width: 500px;
+}
+.cards{
+  background-color: #fff;
+}
+.currentTopic{
+  width: 30%;
+  height: 20%;
+  
+  
+  top: 0;
+  text-align: right;
+  right: 0;
+  position: fixed;   
+  
+  font-size: 1.736vw;
+}

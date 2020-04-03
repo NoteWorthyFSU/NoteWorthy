@@ -27,7 +27,11 @@ class MeetOurTeam extends React.Component {
         <div class="team">
           <div class="team_member">
           <div class="team_img">
+<<<<<<< HEAD
         <img src={require('/Users/lexiewebel/Desktop/Group Project Repos/NoteWorthy/webapp/src/circle-cropped.png')} />
+=======
+        <img src={('circle-cropped.png')} />
+>>>>>>> 9c6baedd73d4d2a3390b95653cae46fff95ce553
       </div>
             <h3>Lexie Webel</h3>
             <p class="role">UI developer</p>
@@ -35,7 +39,11 @@ class MeetOurTeam extends React.Component {
           </div>
           <div class="team_member">
           <div class="team_img">
+<<<<<<< HEAD
         <img src={require('/Users/lexiewebel/Desktop/Group Project Repos/NoteWorthy/webapp/src/circle-cropped.png')} />
+=======
+        <img src={('team1.png')} />
+>>>>>>> 9c6baedd73d4d2a3390b95653cae46fff95ce553
       </div>
             <h3>Daimeun Praytor</h3>
             <p class="role">UI Developer</p>
@@ -43,7 +51,11 @@ class MeetOurTeam extends React.Component {
             </div>
           <div class="team_member">
           <div class="team_img">
+<<<<<<< HEAD
         <img src={require('/Users/lexiewebel/Desktop/Group Project Repos/NoteWorthy/webapp/src/circle-cropped2.png')} />
+=======
+        <img src={('circle-cropped2.png')} />
+>>>>>>> 9c6baedd73d4d2a3390b95653cae46fff95ce553
       </div>
             <h3>Orlando Kenny</h3>
             <p class="role">Backend developer</p>
@@ -52,7 +64,11 @@ class MeetOurTeam extends React.Component {
 
           <div class="team_member">
           <div class="team_img">
+<<<<<<< HEAD
         <img src={require('/Users/lexiewebel/Desktop/Group Project Repos/NoteWorthy/webapp/src/circle-cropped4.png')} />
+=======
+        <img src={('circle-cropped4.png')} />
+>>>>>>> 9c6baedd73d4d2a3390b95653cae46fff95ce553
       </div>
             <h3>Humbert Tores</h3>
             <p class="role">Backend developer</p>
@@ -60,6 +76,7 @@ class MeetOurTeam extends React.Component {
           </div>
           <div class="team_member">
           <div class="team_img">
+<<<<<<< HEAD
         <img src={require('/Users/lexiewebel/Desktop/Group Project Repos/NoteWorthy/webapp/src/circle-cropped5.png')} />
       </div>
             <h3>Tyler Gurly</h3>
@@ -69,6 +86,17 @@ class MeetOurTeam extends React.Component {
           <div class="team_member">
           <div class="team_img">
         <img src={require('/Users/lexiewebel/Desktop/Group Project Repos/NoteWorthy/webapp/src/team1.png')} />
+=======
+        <img src={('circle-cropped5.png')} />
+      </div>
+            <h3>Tyler Gurly</h3>
+            <p class="role">Notes Developer</p>
+            <p>I am a senior studying Computer Science at Florida State University. I will be graduating on May 1st, 2020. I had my first 'real-world' technology based job at J&J Management in Summer 2019 as an IT Intern. I enjoy problem solving and taking challenges head on! I fell in love with technology at a young age through gaming.</p>
+          </div>
+          <div class="team_member">
+          <div class="team_img">
+        <img src={('team1.png')} />
+>>>>>>> 9c6baedd73d4d2a3390b95653cae46fff95ce553
       </div>
             <h3>David Mendleson</h3>
             <p class="role">Notes Developer</p>
