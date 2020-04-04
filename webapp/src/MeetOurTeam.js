@@ -27,11 +27,7 @@ class MeetOurTeam extends React.Component {
         <div class="team">
           <div class="team_member">
           <div class="team_img">
-<<<<<<< HEAD
         <img src={require('/Users/lexiewebel/Desktop/Group Project Repos/NoteWorthy/webapp/src/circle-cropped.png')} />
-=======
-        <img src={('circle-cropped.png')} />
->>>>>>> 9c6baedd73d4d2a3390b95653cae46fff95ce553
       </div>
             <h3>Lexie Webel</h3>
             <p class="role">UI developer</p>
@@ -39,23 +35,15 @@ class MeetOurTeam extends React.Component {
           </div>
           <div class="team_member">
           <div class="team_img">
-<<<<<<< HEAD
-        <img src={require('/Users/lexiewebel/Desktop/Group Project Repos/NoteWorthy/webapp/src/circle-cropped.png')} />
-=======
-        <img src={('team1.png')} />
->>>>>>> 9c6baedd73d4d2a3390b95653cae46fff95ce553
+        <img src={require('/Users/lexiewebel/Desktop/Group Project Repos/NoteWorthy/webapp/src/daimeun.png')} />
       </div>
             <h3>Daimeun Praytor</h3>
             <p class="role">UI Developer</p>
-            <p></p>
+            <p>I am a software engineer student currently studying for a Bachelor’s degree in Computer Science at Florida State University. I have a Minor in Mathematics and plan to graduate in the spring of 2021. I am interested in tracking trends in large datasets to better predict fluctuations in the stock market. In my spare time I play various video games, as well as play with my two Dobermans.</p>
             </div>
           <div class="team_member">
           <div class="team_img">
-<<<<<<< HEAD
         <img src={require('/Users/lexiewebel/Desktop/Group Project Repos/NoteWorthy/webapp/src/circle-cropped2.png')} />
-=======
-        <img src={('circle-cropped2.png')} />
->>>>>>> 9c6baedd73d4d2a3390b95653cae46fff95ce553
       </div>
             <h3>Orlando Kenny</h3>
             <p class="role">Backend developer</p>
@@ -64,11 +52,7 @@ class MeetOurTeam extends React.Component {
 
           <div class="team_member">
           <div class="team_img">
-<<<<<<< HEAD
         <img src={require('/Users/lexiewebel/Desktop/Group Project Repos/NoteWorthy/webapp/src/circle-cropped4.png')} />
-=======
-        <img src={('circle-cropped4.png')} />
->>>>>>> 9c6baedd73d4d2a3390b95653cae46fff95ce553
       </div>
             <h3>Humbert Tores</h3>
             <p class="role">Backend developer</p>
@@ -76,18 +60,7 @@ class MeetOurTeam extends React.Component {
           </div>
           <div class="team_member">
           <div class="team_img">
-<<<<<<< HEAD
         <img src={require('/Users/lexiewebel/Desktop/Group Project Repos/NoteWorthy/webapp/src/circle-cropped5.png')} />
-      </div>
-            <h3>Tyler Gurly</h3>
-            <p class="role">Notes Developer</p>
-            <p></p>
-          </div>
-          <div class="team_member">
-          <div class="team_img">
-        <img src={require('/Users/lexiewebel/Desktop/Group Project Repos/NoteWorthy/webapp/src/team1.png')} />
-=======
-        <img src={('circle-cropped5.png')} />
       </div>
             <h3>Tyler Gurly</h3>
             <p class="role">Notes Developer</p>
@@ -95,19 +68,14 @@ class MeetOurTeam extends React.Component {
           </div>
           <div class="team_member">
           <div class="team_img">
-        <img src={('team1.png')} />
->>>>>>> 9c6baedd73d4d2a3390b95653cae46fff95ce553
+        <img src={require('/Users/lexiewebel/Desktop/Group Project Repos/NoteWorthy/webapp/src/dav.png')} />
       </div>
-            <h3>David Mendleson</h3>
+            <h3>Dave Mendelsohn</h3>
             <p class="role">Notes Developer</p>
-            <p></p>
+            <p>I'm a computer science student. I like code, I like the Grateful Dead, and I like you for visitiing our site.</p>
           </div>
         </div>
         </div>
-
-
-
-
       </body>
       </html>
       </form>
