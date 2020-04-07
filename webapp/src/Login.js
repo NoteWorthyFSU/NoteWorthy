@@ -16,7 +16,7 @@ class Login extends React.Component {
           <br></br>
 
         <h1 className = "loginHeader">
-          <center> Let's get started now! </center>
+          <center> Log in to get started now! </center>
         </h1>
         <br></br>
         <br></br>
@@ -24,8 +24,6 @@ class Login extends React.Component {
         <h2 className = "loginSub">
           <center> Or create an account if not registered yet </center>
         </h2>
-
-
           <div className = "loginBox">
             <center>
             <h4 className = "noteWorthy"> <font size = "10"color="white"> NoteWorthy</font></h4>
@@ -36,7 +34,11 @@ class Login extends React.Component {
                     <br></br>
                   <button className="userInput" type="submit">Sign In</button>
                 </form>
-                <button className="userInputPW" type="submit">Forgot Password?</button>
+                <br></br>
+          <div className = "smalltext">
+          <a href="http://localhost:3000/">Don't have an account? Click here to sign up.</a>
+          </div>
+          <br></br>
             </center>
           </div>
         </div>);

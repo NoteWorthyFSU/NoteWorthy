@@ -62,7 +62,7 @@ def home():
       else:
         isLoggedIn = True
         session['username'] = str(verifiedUser['_id'])
-        return redirect("http://localhost3000/dashboard")
+        return redirect("http://localhost:3000/dashboard")
 
 
 

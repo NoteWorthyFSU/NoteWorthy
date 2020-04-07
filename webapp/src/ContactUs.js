@@ -11,45 +11,35 @@ class ContactUs extends React.Component {
   }
 
   render() {
-    return (<div>
-      <form action = 'http://localhost:3000/contactus' method = 'POST'>
-      <html>
-      <body>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-
-      <div className = "form">
-        <div className = "contact-title">
-        <br></br>
+      return (<div>
         <br></br>
         <br></br>
         <br></br>
 
-          <h1> <center>Contact Us</center></h1>
-          <br></br>
-          <br></br>
+      <h1 className = "loginHeader">
+        <center> Need some help or have a question? </center>
+      </h1>
+      <br></br>
+      <br></br>
 
-        </div>
-        <div className = "contact-form">
+      <h2 className = "loginSub">
+        <center> Contact us below for support. </center>
+      </h2>
+        <div className = "loginBox">
+          <center>
+          <h4 className = "noteWorthy"> <font size = "10"color="white"> NoteWorthy</font></h4>
           <form action = 'http://localhost:3000/contactus' method = 'POST'>
-            <center><input className = "form-control"required type="text" name="name" required placeholder="Your Name"></input></center>
-            <br></br>
-            <center><input className = "form-control"required type="text" name="email" required placeholder="Your Email"></input></center>
-            <br></br>
-            <center><textarea name = "message" class="form-control" placeholder="Message" row = "100" required placeholder="Your Message"></textarea></center>
-            <br></br>
-            <br></br>
-            <center><input type= "submit" className = "form-control submit"required  value= "SEND MESSAGE"></input></center>
-          </form>
+                  <input className = "userInput"required type="text" name="subject" placeholder="Subject"></input>
+                  <br></br>
+                  <input className = "userInput"required type="text" name="message" placeholder="Message"></input>
+                  <br></br>
+                <button className="userInput" type="submit">Submit</button>
+              </form>
+              <br></br>
+          </center>
         </div>
-        </div>
-      </body>
-      </html>
-      </form>
       </div>);
-    }
+  }
+
   }
   export default ContactUs

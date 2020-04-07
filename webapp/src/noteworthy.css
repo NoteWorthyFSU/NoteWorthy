@@ -88,6 +88,18 @@ h4 {
   background-color: #183844;
 }
 
+.userInput12 {
+  margin-top: 1vh;
+  width: 25vw;
+  height: 10vw;
+  font-size: 1.736vw;
+}
+.userInput12[type=text]{
+  border: #3AAFA9;
+  border-radius: 4px;
+  background-color: #183844;
+}
+
 input[type=text]:focus {
   border: 0.5px solid #3AAFA9;
   border-radius: 4px;
@@ -351,7 +363,7 @@ form . submit:hover
 }
 
 .mission .mission-box{
-  background: #2b7a78;
+  background: #193038;
   margin: 5px;
   margin-bottom: 50px;
   width: 1000px;
@@ -368,13 +380,13 @@ form . submit:hover
   background-color: #17252A;
   width: 100%;
   height: 35%;
-  
+
   box-shadow: 10px 10px 20px black;
   bottom: 0;
   left: 0;
   right: 0;
-  position: fixed;   
-  
+  position: fixed;
+
   font-size: 1.736vw;
 }
 
@@ -397,12 +409,31 @@ form . submit:hover
 .currentTopic{
   width: 30%;
   height: 20%;
-  
-  
+
+
   top: 0;
   text-align: right;
   right: 0;
-  position: fixed;   
-  
+  position: fixed;
+
   font-size: 1.736vw;
 }
+.smalltext a {
+  text-decoration: none;
+
+  border: none;
+  background-color: inherit;
+  font-size: 10px;
+  cursor: pointer;
+  display: inline-block;
+  color: #3AAFA9;
+}
+
+.smalltext:focus a{
+    border: none;
+    color: white;
+    outline: 0;
+    position: relative;
+    text-decoration: none;
+
+  }

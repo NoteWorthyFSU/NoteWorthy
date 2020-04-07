@@ -84,7 +84,7 @@ class Dashboard extends React.Component {
         </ul>
       </div>
       </li>
-      <li> <a href="http://localhost:3000/">Log Out </a></li>
+      <li> <a href="http://localhost:3000/login">Log Out </a></li>
       </ul>
       </div>
       </body>
