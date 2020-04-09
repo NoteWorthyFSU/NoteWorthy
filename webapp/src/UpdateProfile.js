@@ -1,6 +1,7 @@
 
 import React from 'react';
 import './noteworthy.css'
+import Dashboard from './Dashboard.js'
 
 class UpdateProfile extends React.Component {
 
@@ -12,6 +13,8 @@ class UpdateProfile extends React.Component {
 
   render() {
     return (<div>
+      <Dashboard>
+      </Dashboard>
       <form action = 'http://localhost:3000/updateprofile' method = 'POST'>
       <html>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>

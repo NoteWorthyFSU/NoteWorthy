@@ -1,6 +1,7 @@
 /*https://www.youtube.com/watch?v=Iv93yjdvkWI*/
 import React from 'react';
 import './noteworthy.css'
+import Dashboard from './Dashboard.js'
 
 class ContactUs extends React.Component {
 
@@ -11,7 +12,10 @@ class ContactUs extends React.Component {
   }
 
   render() {
+
       return (<div>
+        <Dashboard>
+        </Dashboard>
         <br></br>
         <br></br>
         <br></br>

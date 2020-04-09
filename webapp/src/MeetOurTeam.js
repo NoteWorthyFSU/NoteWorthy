@@ -1,6 +1,7 @@
 
 import React from 'react';
 import './noteworthy.css'
+import Dashboard from './Dashboard.js'
 
 class MeetOurTeam extends React.Component {
 
@@ -12,6 +13,8 @@ class MeetOurTeam extends React.Component {
 
   render() {
     return (<div>
+      <Dashboard>
+      </Dashboard>
       <form action = 'http://localhost:3000/meetourteam' method = 'POST'>
       <html>
       <body>
