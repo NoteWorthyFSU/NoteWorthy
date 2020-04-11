@@ -10,6 +10,7 @@ class UpdateProfile extends React.Component {
       first: "",
       last: "",
       email: "",
+      pass: "",
     }
   }
 
@@ -21,10 +22,11 @@ class UpdateProfile extends React.Component {
       .then(([res1]) => Promise.all([res1.json()]))
       .then(([data1]) => 
         {  
+          var splitArr = ((data1['data']).toString()).split(" ")
           this.setState({
-            first: data1['data'][0],
-            last: data1['data'][1],
-            email: data1['data'][2],
+            first: splitArr[0],
+            last: splitArr[1],
+            email: splitArr[2],
           })
       });   
 
@@ -51,13 +53,13 @@ class UpdateProfile extends React.Component {
           <center>
           <h4 className = "noteWorthy"> <font size = "10"color="white"> NoteWorthy</font></h4>
           <form action = 'http://localhost:5000/changeInfo' method = 'POST'>
-                  <input name="upFirst" className = "userInput" type="text" name="subject" placeholder={this.state.first}></input>
+                  <input name="upFirst" className = "userInput" type="text" defaultValue={this.state.first} placeholder="Enter a new first name"></input>
                   <br></br>
-                  <input name="upLast" className = "userInput" type="text" name="subject" placeholder={this.state.last}></input>
+                  <input name="upLast" className = "userInput" type="text" defaultValue={this.state.last} placeholder="Enter a new last name"></input>
                   <br></br>
-                  <input name="upEmail" className = "userInput" type="text" name="message" placeholder={this.state.email} ></input>
+                  <input name="upEmail" className = "userInput" type="text" defaultValue={this.state.email} placeholder="Enter a new email"></input>
                   <br></br>
-                  <input name="upPass" className = "userInput" type="text" name="message" placeholder= "Enter a new password"></input>
+                  <input name="upPass" className = "userInput" type="password" placeholder= "Enter a new password"></input>
                   <br></br>
                 <button className="userInput" type="submit">Update Account</button>
               </form>
