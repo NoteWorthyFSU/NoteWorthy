@@ -32,14 +32,16 @@ class UpdateProfile extends React.Component {
         <div className = "loginBox">
           <center>
           <h4 className = "noteWorthy"> <font size = "10"color="white"> NoteWorthy</font></h4>
-          <form action = 'http://localhost:3000/contactus' method = 'POST'>
-                  <input className = "userInput"required type="text" name="subject" placeholder="First Name"></input>
+          <form action = 'http://localhost:5000/changeInfo' method = 'POST'>
+                  <input className = "userInput"required type="text" name="subject" value = "" placeholder= ""></input>
                   <br></br>
-                  <input className = "userInput"required type="text" name="subject" placeholder="Last Name"></input>
+                  <input className = "userInput"required type="text" name="subject" value = "" placeholder= ""></input>
                   <br></br>
-                  <input className = "userInput"required type="text" name="message" placeholder="Password"></input>
+                  <input className = "userInput"required type="text" name="message" value = "" placeholder= "" ></input>
                   <br></br>
-                <button className="userInput" type="Update Account">Submit</button>
+                  <input className = "userInput"required type="text" name="message" value = "" placeholder= ""></input>
+                  <br></br>
+                <button className="userInput" type="submit">Update Account</button>
               </form>
               <br></br>
           </center>
