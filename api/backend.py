@@ -5,7 +5,10 @@ import bcrypt
 from response import Response
 from pymongo import MongoClient
 
-
+loggedFirstName = ""
+loggedLastName = ""
+loggedEmail = ""
+loggedPass = ""
 isInvalid = False
 isDuplicate = False
 isLoggedIn = False
@@ -27,6 +30,11 @@ mongo = PyMongo(app)
 def home():
   global isInvalid
   global isDuplicate
+  global loggedFirstName
+  global loggedLastName
+  global loggedEmail
+  global loggedPass
+  global isLoggedIn
 
   if request.method == 'GET':
     return render_template('register.html')
@@ -35,6 +43,7 @@ def home():
     firstName = document['firstname']
     lastName = document['lastname']
     email = document['email']
+    
     rawPassword = document['password'].encode('utf-8')
 
     hashedPassword = bcrypt.hashpw(rawPassword, bcrypt.gensalt())
@@ -61,14 +70,11 @@ def home():
         return "The API reported an error"
       else:
         isLoggedIn = True
+        loggedFirstName = verifiedUser['firstName']
+        loggedLastName = verifiedUser['lastName']
+        loggedEmail = verifiedUser['email']
         session['username'] = str(verifiedUser['_id'])
         return redirect("http://localhost:3000/dashboard")
-
-
-
-@app.route('/postRegister')
-def postReg():
-  return("post register")
 
 @app.route('/')
 def index():
@@ -78,6 +84,7 @@ def index():
 def user_count():
   res = 'This is a response from the API'
   return Response(200, res).serialize()
+
 
 @app.route('/testDB', methods=['GET'])
 def test_db():
@@ -96,9 +103,13 @@ def registration():
 
 @app.route('/login', methods=['POST', 'GET'])
 def loginPage():
-
   global isInvalid
   global isDuplicate
+  global loggedFirstName
+  global loggedLastName
+  global loggedEmail
+  global isLoggedIn
+
   if request.method == 'GET':
     return render_template('login.html')
   if request.method == 'POST':
@@ -111,11 +122,13 @@ def loginPage():
       isInvalid = True
       isDuplicate = False
       return "Invalid Credentials"
-    correctPassword = bcrypt.checkpw(password.encode('utf8'), user['password'])
+    correctPassword = bcrypt.checkpw(password.encode('utf-8'), user['password'])
     if correctPassword == True:
       isInvalid = False
       isDuplicate = False
-
+      loggedFirstName = user['firstName']
+      loggedLastName = user['lastName']
+      loggedEmail = user['email']
       session['username'] = str(user['_id'])
       isLoggedIn = True
       return redirect("http://localhost:3000/dashboard")
@@ -141,9 +154,6 @@ def status():
     isInvalid = False
     isDuplicate = False
     return "invalid"
-
-
-
   return("isInvalid" + str(isInvalid) + '\n' + "isDuplicate" + str(isDuplicate))
 
 
@@ -155,27 +165,48 @@ def logout():
   # FIX THIS (ERROR CHECKING)
   if(request.method == 'POST') :
     session.pop('username')
-
     if('username' in session) :
       return "There was an error logging out"
-
     isLoggedIn = False
     return redirect("http://localhost:3000/")
 
 
 @app.route('/isLoggedIn', methods=['GET'])
-def isLoggedIn() :
-
+def isLogged() :
   if('username' in session) :
     return str(True)
   else :
     return str(False)
 
-@app.route('/saveNotes', methods=['POST'])
-def NOTES() :
-  document = request.form.to_dict()
-  print(document["Notes"])
-  if('Notes' in session) :
-    return str(True)
-  else :
-    return str(document["Notes"])
+
+@app.route('/changeInfo', methods=['POST', 'GET'])
+def changeInfo() :
+  global loggedFirstName
+  global loggedLastName
+  global loggedEmail
+  global isLoggedIn
+
+  if request.method == 'GET':
+    string = loggedFirstName + " " + loggedLastName + " " + loggedEmail
+    return Response(200, {string}).serialize()
+  if request.method == 'POST':
+    document = request.form.to_dict()
+    
+    if document['upPass'] == "":
+      mongo.db.users.find_one_and_update({'email': loggedEmail}, {'$set': {'firstName': document['upFirst'], 'lastName': document['upLast'], 'email': document['upEmail']}})
+      loggedFirstName = document['upFirst']
+      loggedLastName = document['upLast']
+      loggedEmail = document['upEmail']
+      return redirect("http://localhost:3000/updateprofile")
+    hashedPassword = bcrypt.hashpw(document['upPass'].encode("utf-8"), bcrypt.gensalt())
+    mongo.db.users.find_one_and_update({'email': loggedEmail}, {'$set': {'firstName': document['upFirst'], 'lastName': document['upLast'], 'email': document['upEmail'], 'password': hashedPassword}})
+    user = mongo.db.users.find_one({'email': document['upEmail']})
+
+    loggedFirstName = user['firstName']
+    loggedLastName = user['lastName']
+    loggedEmail = user['email']
+    return redirect("http://localhost:3000/updateprofile")
+
+
+
+  
