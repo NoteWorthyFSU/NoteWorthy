@@ -170,3 +170,12 @@ def isLoggedIn() :
     return str(True)
   else :
     return str(False)
+
+@app.route('/saveNotes', methods=['POST'])
+def NOTES() :
+  document = request.form.to_dict()
+  print(document["Notes"])
+  if('Notes' in session) :
+    return str(True)
+  else :
+    return str(document["Notes"])
