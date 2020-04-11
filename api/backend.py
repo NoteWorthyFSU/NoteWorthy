@@ -5,7 +5,9 @@ import bcrypt
 from response import Response
 from pymongo import MongoClient
 
-
+loggedFirstName = ""
+loggedLastName = ""
+loggedEmail = ""
 isInvalid = False
 isDuplicate = False
 isLoggedIn = False
@@ -27,6 +29,9 @@ mongo = PyMongo(app)
 def home():
   global isInvalid
   global isDuplicate
+  global loggedFirstName
+  global loggedLastName
+  global loggedEmail
 
   if request.method == 'GET':
     return render_template('register.html')
@@ -61,6 +66,9 @@ def home():
         return "The API reported an error"
       else:
         isLoggedIn = True
+        loggedFirstName = str(verifiedUser['firstName'])
+        loggedLastName = str(verifiedUser['lastName'])
+        loggedEmail = str(verifiedUser['email'])
         session['username'] = str(verifiedUser['_id'])
         return redirect("http://localhost:3000/dashboard")
 
@@ -96,9 +104,11 @@ def registration():
 
 @app.route('/login', methods=['POST', 'GET'])
 def loginPage():
-
   global isInvalid
   global isDuplicate
+  global loggedFirstName
+  global loggedLastName
+  global loggedEmail
   if request.method == 'GET':
     return render_template('login.html')
   if request.method == 'POST':
@@ -115,7 +125,9 @@ def loginPage():
     if correctPassword == True:
       isInvalid = False
       isDuplicate = False
-
+      loggedFirstName = str(user['firstName'])
+      loggedLastName = str(user['lastName'])
+      loggedEmail = str(user['email'])
       session['username'] = str(user['_id'])
       isLoggedIn = True
       return redirect("http://localhost:3000/dashboard")
@@ -165,8 +177,21 @@ def logout():
 
 @app.route('/isLoggedIn', methods=['GET'])
 def isLoggedIn() :
-
   if('username' in session) :
     return str(True)
   else :
     return str(False)
+
+@app.route('/changeInfo', methods=['POST', 'GET'])
+def changeInfo() :
+  global loggedFirstName
+  global loggedLastName
+  global loggedEmail
+  global isLoggedIn
+  if request.method == 'GET':
+    return Response(200, {loggedFirstName, loggedLastName, loggedEmail}).serialize()
+  if request.method == 'POST':
+    document = request.form.to_dict()
+    return (document['upFirst'] + " " + document['upLast'] + document['upEmail'] + document['upPass'])
+
+  
