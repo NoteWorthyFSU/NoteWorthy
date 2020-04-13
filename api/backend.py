@@ -174,9 +174,9 @@ def logout():
 @app.route('/isLoggedIn', methods=['GET'])
 def isLogged() :
   if('username' in session) :
-    return str(True)
+    return Response(200, {True}).serialize()
   else :
-    return str(False)
+    return Response(200, {False}).serialize()
 
 
 @app.route('/changeInfo', methods=['POST', 'GET'])

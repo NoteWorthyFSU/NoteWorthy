@@ -1,17 +1,45 @@
 /*https://www.youtube.com/watch?v=wHFflWvii3M*/
 import React from 'react';
 import './noteworthy.css'
+import {Redirect} from 'react-router-dom'
 
 class Dashboard extends React.Component {
 
   constructor() {
     super();
-    this.state = {
-    }
+    this.state = {isLoggedIn: ""}
   }
 
+  componentDidMount() 
+  {
+    const axios = require('axios');
+    const axiosWithCookies = axios.create({
+      withCredentials: true
+    });
+    //connects to the login endpoint and reads the session cookie to see if the user is logged in to gain access to the cards page
+    axiosWithCookies.get(`http://localhost:5000/isLoggedIn`)
+        .then((response) => {
+            this.setState({isLoggedIn: JSON.stringify(response.data['data'])})
+            //alert(this.state.isLoggedIn)
+        }).catch((error) => {
+            alert("There was an error connecting to the api")
+            console.error(error);
+        });
+    // Promise.all([
+    //   fetch('http://localhost:5000/isLoggedIn'),
+    // ])
+    //   .then(([res1]) => Promise.all([res1.json()]))
+    //   .then(([data1]) => 
+    //     {  
+    //       this.setState({
+    //         isLoggedIn: data1['data']
+    //       })
+    //   });   
+
+  }
   render() {
-    return (<div>
+    return 
+    (<div>
       <form action = 'http://localhost:3000/dashboard' method = 'POST'>
       <html>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
@@ -89,7 +117,7 @@ class Dashboard extends React.Component {
       </body>
       </html>
       </form>
-      </div>);
+      {alert(this.state.isLoggedIn)} </div>) 
     }
   }
   export default Dashboard
