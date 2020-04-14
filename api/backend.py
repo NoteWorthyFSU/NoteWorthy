@@ -158,25 +158,22 @@ def status():
 
 
 
-@app.route('/logout', methods=['POST'])
+@app.route('/logout', methods=['GET'])
 def logout():
   global isLoggedIn
-
-  # FIX THIS (ERROR CHECKING)
-  if(request.method == 'POST') :
-    session.pop('username')
-    if('username' in session) :
-      return "There was an error logging out"
-    isLoggedIn = False
-    return redirect("http://localhost:3000/")
+  session.pop('username')
+  if('username' in session) :
+    return "There was an error logging out"
+  isLoggedIn = False
+  return redirect("http://localhost:3000/")
 
 
 @app.route('/isLoggedIn', methods=['GET'])
 def isLogged() :
   if('username' in session) :
-    return Response(200, {True}).serialize()
+    return Response(200, True).serialize()
   else :
-    return Response(200, {False}).serialize()
+    return Response(200, False).serialize()
 
 
 @app.route('/changeInfo', methods=['POST', 'GET'])

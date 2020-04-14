@@ -7,10 +7,10 @@ class Dashboard extends React.Component {
 
   constructor() {
     super();
-    this.state = {isLoggedIn: ""}
+    this.state = {isLoggedIn: true}
   }
 
-  componentDidMount() 
+  componentWillMount() 
   {
     const axios = require('axios');
     const axiosWithCookies = axios.create({
@@ -19,27 +19,16 @@ class Dashboard extends React.Component {
     //connects to the login endpoint and reads the session cookie to see if the user is logged in to gain access to the cards page
     axiosWithCookies.get(`http://localhost:5000/isLoggedIn`)
         .then((response) => {
-            this.setState({isLoggedIn: JSON.stringify(response.data['data'])})
-            //alert(this.state.isLoggedIn)
+            this.setState({isLoggedIn: (response.data['data'])})
+           
         }).catch((error) => {
             alert("There was an error connecting to the api")
             console.error(error);
         });
-    // Promise.all([
-    //   fetch('http://localhost:5000/isLoggedIn'),
-    // ])
-    //   .then(([res1]) => Promise.all([res1.json()]))
-    //   .then(([data1]) => 
-    //     {  
-    //       this.setState({
-    //         isLoggedIn: data1['data']
-    //       })
-    //   });   
-
   }
   render() {
-    return 
-    (<div>
+    return  this.state.isLoggedIn === true ? (<div>
+      {
       <form action = 'http://localhost:3000/dashboard' method = 'POST'>
       <html>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
@@ -111,13 +100,20 @@ class Dashboard extends React.Component {
         </ul>
       </div>
       </li>
-      <li> <a href="http://localhost:3000/login">Log Out </a></li>
+      <li> <a href="http://localhost:5000/logout">Log Out </a></li>
       </ul>
       </div>
       </body>
       </html>
       </form>
-      {alert(this.state.isLoggedIn)} </div>) 
+      }
+       </div>) :
+       (
+        <div>
+          {alert("You must be logged in to access this page.")}
+          <Redirect to="/"></Redirect>
+          </div>
+       )
     }
   }
   export default Dashboard
