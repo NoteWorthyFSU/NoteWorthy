@@ -35,54 +35,12 @@ class Dashboard extends React.Component {
       <body>
       <div className = "menu-bar">
       <ul>
-      <li> <a href="http://localhost:3000/dashboard">Home</a> </li>
+      <li> <a href="http://localhost:3000/dashboard">Dashboard</a> </li>
       <li> <a href="http://localhost:3000/mission">About Us </a>
       <div className="sub-menu-1">
         <ul>
           <li> <a href="http://localhost:3000/mission">Mission + Vision </a></li>
           <li> <a href="http://localhost:3000/meetourteam">Meet Our Team</a></li>
-        </ul>
-      </div>
-      </li>
-      <li> <a href="#">Classes </a>
-      <div className="sub-menu-1">
-        <ul>
-          <li class ="hover-me"> <a href="#">Biology 1 </a> <i class="fa fa-angle-right"></i>
-          <div className="sub-menu-2">
-            <ul>
-              <li> <a href="#">Note #1 </a></li>
-              <li> <a href="#">Note #2</a></li>
-              <li> <a href="#">Note #3</a></li>
-            </ul>
-          </div>
-          </li>
-          <li class ="hover-me"> <a href="#">Programming Languages</a><i class="fa fa-angle-right"></i>
-          <div className="sub-menu-2">
-            <ul>
-              <li> <a href="#">Note #1 </a></li>
-              <li> <a href="#">Note #2</a></li>
-              <li> <a href="#">Note #3</a></li>
-            </ul>
-          </div>
-          </li>
-          <li class ="hover-me"> <a href="#">Spanish 3</a><i class="fa fa-angle-right"></i>
-          <div className="sub-menu-2">
-            <ul>
-              <li> <a href="#">Note #1 </a></li>
-              <li> <a href="#">Note #2</a></li>
-              <li> <a href="#">Note #3</a></li>
-            </ul>
-          </div>
-          </li>
-          <li class ="hover-me"> <a href="#">Software Engineering</a><i class="fa fa-angle-right"></i>
-          <div className="sub-menu-2">
-            <ul>
-              <li> <a href="#">Note #1 </a></li>
-              <li> <a href="#">Note #2</a></li>
-              <li> <a href="#">Note #3</a></li>
-            </ul>
-          </div>
-          </li>
         </ul>
       </div>
       </li>
