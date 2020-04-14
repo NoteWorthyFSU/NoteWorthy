@@ -44,6 +44,7 @@ class Dashboard extends React.Component {
         </ul>
       </div>
       </li>
+      <li> <a href="http://localhost:3000/notes">Notes</a> </li>
       <li> <a href="http://localhost:3000/updateprofile">Settings </a>
         <div className="sub-menu-1">
           <ul>
