@@ -30,6 +30,24 @@ app.secret_key = 'mysecret'
 app.config["MONGO_URI"] = uri
 mongo = PyMongo(app)
 
+@app.route('/invalidCredentials')
+def invalidCredentials():
+  global isInvalid
+  if isInvalid is True:
+    isInvalid = False
+    return Response(200, True).serialize()
+  return Response(200, False).serialize()
+
+@app.route('/duplicate')
+def duplicate():
+  global isDuplicate
+  if isDuplicate is True:
+    isDuplicate = False
+    return Response(200, True).serialize()
+  return Response(200, False).serialize()
+
+
+
 @app.route('/register', methods=['GET', 'POST'])
 def home():
   global isInvalid
@@ -56,7 +74,7 @@ def home():
     if user is not None:
       isInvalid = False
       isDuplicate = True
-      return "User already exists."
+      return redirect("http://localhost:3000/login")
     else:
       isInvalid = False
       isDuplicate = False
@@ -125,7 +143,7 @@ def loginPage():
     if user is None:
       isInvalid = True
       isDuplicate = False
-      return "Invalid Credentials"
+      return redirect("http://localhost:3000/login")
     correctPassword = bcrypt.checkpw(password.encode('utf-8'), user['password'])
     if correctPassword == True:
       isInvalid = False
