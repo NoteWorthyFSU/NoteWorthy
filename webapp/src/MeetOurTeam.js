@@ -17,7 +17,6 @@ class MeetOurTeam extends React.Component {
       </Dashboard>
       <form action = 'http://localhost:3000/meetourteam' method = 'POST'>
       <html>
-      <body>
       <div class="contact-form">
       <br></br>
       <br></br>
@@ -79,7 +78,6 @@ class MeetOurTeam extends React.Component {
           </div>
         </div>
         </div>
-      </body>
       </html>
       </form>
       </div>);

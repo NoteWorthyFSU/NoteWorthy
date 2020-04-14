@@ -10,7 +10,7 @@ class Dashboard extends React.Component {
     this.state = {isLoggedIn: true}
   }
 
-  componentWillMount() 
+  componentWillMount()
   {
     const axios = require('axios');
     const axiosWithCookies = axios.create({
@@ -20,7 +20,7 @@ class Dashboard extends React.Component {
     axiosWithCookies.get(`http://localhost:5000/isLoggedIn`)
         .then((response) => {
             this.setState({isLoggedIn: (response.data['data'])})
-           
+
         }).catch((error) => {
             alert("There was an error connecting to the api")
             console.error(error);
@@ -36,7 +36,7 @@ class Dashboard extends React.Component {
       <div className = "menu-bar">
       <ul>
       <li> <a href="http://localhost:3000/dashboard">Home</a> </li>
-      <li> <a href="#">About Us </a>
+      <li> <a href="http://localhost:3000/mission">About Us </a>
       <div className="sub-menu-1">
         <ul>
           <li> <a href="http://localhost:3000/mission">Mission + Vision </a></li>
@@ -86,20 +86,14 @@ class Dashboard extends React.Component {
         </ul>
       </div>
       </li>
-      <li> <a href="#">Settings </a>
+      <li> <a href="http://localhost:3000/updateprofile">Settings </a>
         <div className="sub-menu-1">
           <ul>
             <li> <a href="http://localhost:3000/updateprofile">Update Profile</a></li>
           </ul>
         </div>
         </li>
-      <li> <a href="http://localhost:3000/contactus">Contact </a>
-      <div className="sub-menu-1">
-        <ul>
-          <li> <a href="http://localhost:3000/contactus">Get Support</a></li>
-        </ul>
-      </div>
-      </li>
+      <li> <a href="http://localhost:3000/contactus">Contact </a></li>
       <li> <a href="http://localhost:5000/logout">Log Out </a></li>
       </ul>
       </div>

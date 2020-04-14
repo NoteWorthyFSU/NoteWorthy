@@ -14,21 +14,21 @@ class UpdateProfile extends React.Component {
     }
   }
 
-  componentDidMount() 
+  componentDidMount()
   {
     Promise.all([
       fetch('http://localhost:5000/changeInfo'),
     ])
       .then(([res1]) => Promise.all([res1.json()]))
-      .then(([data1]) => 
-        {  
+      .then(([data1]) =>
+        {
           var splitArr = ((data1['data']).toString()).split(" ")
           this.setState({
             first: splitArr[0],
             last: splitArr[1],
             email: splitArr[2],
           })
-      });   
+      });
 
   }
   render() {
@@ -64,8 +64,14 @@ class UpdateProfile extends React.Component {
                 <button className="userInput" type="submit">Update Account</button>
               </form>
               <br></br>
+              <br></br>
+              <br></br>
           </center>
         </div>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
       </div>);
     }
   }
