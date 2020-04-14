@@ -4,6 +4,10 @@ from flask_pymongo import PyMongo
 import bcrypt
 from response import Response
 from pymongo import MongoClient
+from time import gmtime, strftime
+
+
+today = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 
 loggedFirstName = ""
 loggedLastName = ""
@@ -204,6 +208,70 @@ def changeInfo() :
     loggedEmail = user['email']
     return redirect("http://localhost:3000/updateprofile")
 
-
-
+@app.route('/saveNotes', methods=['POST'])
+def saveNotes() :
+  global today
+  global loggedEmail
   
+  #example of how the data is recieved
+  # NOTES FROM THE PREVIOUS PAGE 
+  # Topic1
+  #   - content1
+  #   - content2
+  # Topic2
+  #   -content3
+  #   -content4
+  #
+  # FORM SENDS THE FOLLOWING TO THE BACKEND 
+  # Topic = Topic1, Topic2    - AS A STRING
+  # Notes = [Topic1]content1, [Topic1]content2, [Topic2]content3, [Topic2]content4  - AS A STRING
+  #
+  # our job here is to seperate both of these raw strings...
+  # the first one we just use the split function (it returns an array of strings without their , delimeter)
+  #
+  # for the second one we have to take out the topic from the raw strings and then seperate them...
+  # we perform this task by iterating through the tasks and then internally iterating through the raw string and calling .split["[" + topic + "]"]
+  # this returns the individual notes corresponding to a specific subject
+  # individual notes are pushed to a topicNotes array 
+  # once the topic has been iterated through we create a dictionary {topic: notes}
+  # we push this dictionary to a final notes array
+  # we push the final notes array to the database along with a timestamp and the user's email
+
+  finalNotes = []
+  document = request.form.to_dict()
+  #take the comma seperated topics list nad turn it into an array
+  topicsArr = (document["Topics"]).split(",")
+  notesRawArr = (document["Notes"]).split(",")
+
+  #iterate through every topic
+  for topic in range(len(topicsArr)):  
+    topicNotes = []
+    #iterate through individual notes, line per line
+    for index in range(len(notesRawArr)):   
+      #find and remove the topic from the raw string array 
+      if (topicsArr[topic] in notesRawArr[index]):
+        tempNote = (notesRawArr[index].split("[" + topicsArr[topic] + "]"))
+        topicNotes += tempNote
+        while("" in topicNotes) : 
+          topicNotes.remove("")
+      #create a dictionary of the topic and the corresponding notes
+      topicDict = dict({topicsArr[topic]: topicNotes})
+      #add the dict to the final notes array, an array of dicts
+    finalNotes+=[topicDict]
+
+  #try to find the user's in the notes collection
+  user = mongo.db.notes.find_one({'email': loggedEmail})
+  #if nonexistent, make a new one
+  if user is None:
+    mongo.db.notes.insert_one({
+      'email': loggedEmail,
+      today: [finalNotes],
+    })
+    return redirect("http://localhost:3000/dashboard")
+
+  #if it is existent, use $set to create a new entry for notes and set it to the timestamp 
+  mongo.db.notes.find_one_and_update({
+      'email': loggedEmail,
+    }, {"$set": {today: [finalNotes]}})
+  
+  return Response(200, finalNotes).serialize()

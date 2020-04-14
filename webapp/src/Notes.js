@@ -2,14 +2,18 @@ import React from 'react';
 import './notes.css';
 import Dashboard from './Dashboard.js'
 
+let dataArray = []
+let dataArray2 = []
 class Notes extends React.Component {
 
-    constructor()
+    constructor(props)
     {
-        super();
+        super(props);
         this.state = {
             cNotes: " ",
-            notes: new Map(),
+            notes: new Map,
+            data: [], //topics
+            data2: [],  //notes
             topics: [],
             currentTopic: " ",
             topicNum: 0,
@@ -18,8 +22,31 @@ class Notes extends React.Component {
             titleSet: false,
             prevKey: 0,
             inArrow: false
+
+        }
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleSubmit(e)
+    {     
+        let subject, content
+        for (subject of this.state.notes.keys())
+        {
+            console.log(subject)
+            for(content of this.state.notes.get(subject))
+            {
+                console.log(content)
+            }
         }
     }
+
+    handleChange(e)
+    {
+        this.setState({data: e.target.value})
+    }
+   
+    
 
     render(){
         return(
@@ -32,8 +59,11 @@ class Notes extends React.Component {
             <h1 id = "temptitle">{this.state.tempTitle}</h1>
             <p className="currentTopic">current Topic: {this.state.currentTopic}</p>
             <p className= "notes" id = "current">{this.state.cNotes}</p>
-            <form action='http://localhost:5000/saveNotes' method="POST">
-                <button className="savebutton" type="submit" onClick={this.doalert.bind()}>Save</button>
+            <form action='http://localhost:5000/saveNotes' method="POST" onSubmit={this.handleSubmit}>
+                <button className="savebutton" type="submit" >Save</button>
+                <input type="text" name="Topics" value={this.state.data}></input>
+                <br></br>
+                <input type="text" name="Notes" value={this.state.data2}></input>
                 <textarea autofocus id="area" className = "noteBox" rows="50" cols="50"
                     onChange={evt => this.update(evt)} onKeyDown={evt => this.keyIn(evt)} />
             </form>
@@ -166,8 +196,12 @@ class Notes extends React.Component {
                 var temp = this.state.notes
                 temp.get(this.state.currentTopic).push(box.value)
                 this.setState({notes: temp})
+                //add notes
+                dataArray2.push("[" + this.state.currentTopic + "]" + box.value)
+                this.setState({data2: dataArray2})
                 box.value = ""
                 this.setState({prevKey: e.keyCode,cNotes: ""})
+                
 
             }
             // double tab new topic
@@ -180,7 +214,6 @@ class Notes extends React.Component {
             var notes = this.state.notes
             var cTopic = notes.get(this.state.currentTopic)
             var pos = cTopic.length - this.state.currentNote
-            var box = document.getElementById("area")
             var temp = this.state.notes
             cTopic[pos] = box.value
             box.value = ""
@@ -196,6 +229,8 @@ class Notes extends React.Component {
     }
 
     update(evt){
+        //add toipcs
+        this.setState({data: this.state.topics})
         if(this.state.titleSet == false)
         {
             this.setState({tempTitle: evt.target.value});
