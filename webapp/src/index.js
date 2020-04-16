@@ -8,11 +8,7 @@ import Dashboard from './Dashboard';
 import ContactUs from './ContactUs';
 import Mission from './Mission';
 import UpdateProfile from './UpdateProfile';
-import DeleteProfile from './DeleteProfile';
 import MeetOurTeam from './MeetOurTeam';
-
-
-
 import { Redirect, Switch, Route, BrowserRouter as Router, Link } from 'react-router-dom';
 import {render} from 'react-dom';
 import './noteworthy.css'
@@ -27,7 +23,6 @@ const routing = (
       <Route  exact path="/ContactUs" component={ContactUs}/>
       <Route  exact path="/Mission" component={Mission}/>
       <Route  exact path="/UpdateProfile" component={UpdateProfile}/>
-      <Route  exact path="/DeleteProfile" component={DeleteProfile}/>
       <Route  exact path="/MeetOurTeam" component={MeetOurTeam}/>
       <Route exact path="/login" component={Login}/>
       <Route exact path="/*" component={Error}/>

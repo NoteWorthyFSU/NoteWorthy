@@ -293,3 +293,23 @@ def saveNotes() :
     }, {"$set": {today: [finalNotes]}})
   
   return Response(200, finalNotes).serialize()
+
+
+@app.route('/userNotes')
+def userNotes() :  
+  global loggedEmail
+  user = mongo.db.notes.find_one({'email': loggedEmail})
+  if(user is None) :
+    return Response(200, "No Data").serialize()
+  else :
+    return Response(200, user).serialize()
+
+
+@app.route('/delete', methods = ['GET'])
+def delete():
+  global loggedEmail
+  if request.method == 'GET':
+    session.pop('username')
+    mongo.db.users.delete_one({'email': loggedEmail}) 
+    return redirect("http://localhost:3000/")
+

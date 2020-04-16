@@ -63,6 +63,12 @@ class UpdateProfile extends React.Component {
                   <br></br>
                 <button className="userInput" type="submit">Update Account</button>
               </form>
+              <button className="float"onClick={() => {
+                var result = window.confirm("Are you sure you want to delete your account?")
+                if(result === true)
+                {
+                  window.location = "http://localhost:5000/delete"
+                }}}>delete account</button>
               <br></br>
               <br></br>
               <br></br>
