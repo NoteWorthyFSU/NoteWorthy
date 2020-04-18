@@ -273,20 +273,20 @@ def saveNotes() :
         while("" in topicNotes) : 
           topicNotes.remove("")
       #create a dictionary of the topic and the corresponding notes
-      topicDict = dict({topicsArr[topic]: topicNotes})
+      topicDict = dict({'topics' : {topicsArr[topic]: topicNotes}})
       #add the dict to the final notes array, an array of dicts
     finalNotes+=[topicDict]
 
   #try to find the user's in the notes collection
   user = mongo.db.notes.find_one({'email': loggedEmail})
-  #if nonexistent, make a new one
+  #if nonexistent, make a new user document
   if user is None:
     mongo.db.notes.insert_one({'email': loggedEmail})
 
   #if it is existent, use $set to create a new entry for notes and set it to the timestamp 
   mongo.db.notes.find_and_modify({
       'email': loggedEmail,
-    }, {"$push": {today:  [{document['Class']: [finalNotes]}]}})
+    }, {"$push": {'notes':  [{'subject': [document['Class'], [finalNotes]]}]}})
   
   return redirect("http://localhost:3000/dashboard")
 
@@ -296,7 +296,7 @@ def userNotes() :
   global loggedEmail
   user = mongo.db.notes.find_one({'email': loggedEmail})
   if(user is None) :
-    return Response(200, "No Data").serialize()
+    return Response(200, 0).serialize()
   else :
     return Response(200, user).serialize()
 

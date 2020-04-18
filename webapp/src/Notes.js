@@ -2,14 +2,11 @@ import React from 'react';
 import './notes.css';
 import Dashboard from './Dashboard.js'
 import Select from 'react-select';
+import Creatable, { makeCreatableSelect } from 'react-select/creatable';
 
 let dataArray = []
 let dataArray2 = []
-const emotionsList = [
-    { value: 'biology', label: 'Biology' },
-    { value: 'chemistry', label: 'Chemistry' },
-    { value: 'math', label: 'Math' }
-]
+const classesList = []
 class Notes extends React.Component {
 
     constructor(props)
@@ -33,13 +30,47 @@ class Notes extends React.Component {
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.handleEmotion = this.handleEmotion.bind(this);
+        this.handleClasses = this.handleClasses.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
    }
 
-   handleEmotion = className => {
-    this.setState({ className, actualClass: className['value'] });
-    var temp = JSON.stringify(className);
-    console.log(`Option selected:`, temp);
+   componentWillMount()
+    {
+        Promise.all([
+            fetch('http://localhost:5000/userNotes'),
+          ])
+            .then(([res1]) => Promise.all([res1.json()]))
+            .then(([data1]) =>
+              {
+                if(data1['data'] !== 0)
+                {
+                    var parseObj = data1['data']
+                    for(var i = 0; i < (data1['data']['notes']).length; i++)
+                    {
+                        var subject = data1['data']['notes'][i][0]['subject'][0]
+                        classesList.push({'value': subject, 'label': subject})
+                    }
+                }   
+            });
+    }
+
+   handleClasses = (newValue, actionMeta) => {
+    if(newValue !== null)
+    {
+        this.setState({actualClass: newValue['value'] });
+    }
+    
+    console.group('Value Changed');
+    console.log(newValue);
+    console.log(`action: ${actionMeta.action}`);
+    console.groupEnd();
+  };
+
+  handleInputChange = (inputValue, actionMeta) => {
+    console.group('Input Changed');
+    console.log(inputValue);
+    console.log(`action: ${actionMeta.action}`);
+    console.groupEnd();
   };
 
     handleSubmit(e)
@@ -65,11 +96,14 @@ class Notes extends React.Component {
         <div id="main">
         <Dashboard>
         </Dashboard>
-        <Select className="wrapper"
-              value={this.state.className}
-              onChange={this.handleEmotion}
-              options={emotionsList}
-            />
+        <Creatable className="wrapper"
+            isClearable
+            onChange={this.handleClasses}
+            onInputChange={this.handleInputChange}
+            options={classesList}
+            placeholder="Pick or Create a Subject"
+        />
+       
             <div className ="cards" id="render">
                 {this.renderList()}
             </div>
@@ -81,7 +115,7 @@ class Notes extends React.Component {
                 <input type="text" name="Topics" value={this.state.data}></input>
                 <br></br>
                 <input type="text" name="Notes" value={this.state.data2}></input>
-                <input className="grab" type="text" name="Class" value={this.state.actualClass}></input>
+                <input  type="text" name="Class" value={this.state.actualClass}></input>
                 <textarea autofocus id="area" className = "noteBox" rows="50" cols="50"
                     onChange={evt => this.update(evt)} onKeyDown={evt => this.keyIn(evt)} />
             </form>
