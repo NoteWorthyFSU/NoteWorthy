@@ -48,7 +48,16 @@ class Notes extends React.Component {
                     for(var i = 0; i < (data1['data']['notes']).length; i++)
                     {
                         var subject = data1['data']['notes'][i][0]['subject'][0]
-                        classesList.push({'value': subject, 'label': subject})
+                        var exists = false;
+                        for(var j = 0; j < classesList.length; j++)
+                        {
+                            if(classesList[j]['value'] === subject)
+                            {
+                                exists = true;
+                            }
+                        }
+                        if(exists === false) { classesList.push({'value': subject, 'label': subject})}
+                       
                     }
                 }   
             });
