@@ -1,9 +1,15 @@
 import React from 'react';
 import './notes.css';
 import Dashboard from './Dashboard.js'
+import Select from 'react-select';
 
 let dataArray = []
 let dataArray2 = []
+const emotionsList = [
+    { value: 'biology', label: 'Biology' },
+    { value: 'chemistry', label: 'Chemistry' },
+    { value: 'math', label: 'Math' }
+]
 class Notes extends React.Component {
 
     constructor(props)
@@ -21,12 +27,20 @@ class Notes extends React.Component {
             currentNote: 0,
             titleSet: false,
             prevKey: 0,
-            inArrow: false
-
+            inArrow: false,
+            className: null,
+            actualClass: null
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
-    }
+        this.handleEmotion = this.handleEmotion.bind(this);
+   }
+
+   handleEmotion = className => {
+    this.setState({ className, actualClass: className['value'] });
+    var temp = JSON.stringify(className);
+    console.log(`Option selected:`, temp);
+  };
 
     handleSubmit(e)
     {     
@@ -46,13 +60,16 @@ class Notes extends React.Component {
         this.setState({data: e.target.value})
     }
    
-    
-
     render(){
         return(
         <div id="main">
         <Dashboard>
         </Dashboard>
+        <Select className="wrapper"
+              value={this.state.className}
+              onChange={this.handleEmotion}
+              options={emotionsList}
+            />
             <div className ="cards" id="render">
                 {this.renderList()}
             </div>
@@ -64,6 +81,7 @@ class Notes extends React.Component {
                 <input type="text" name="Topics" value={this.state.data}></input>
                 <br></br>
                 <input type="text" name="Notes" value={this.state.data2}></input>
+                <input className="grab" type="text" name="Class" value={this.state.actualClass}></input>
                 <textarea autofocus id="area" className = "noteBox" rows="50" cols="50"
                     onChange={evt => this.update(evt)} onKeyDown={evt => this.keyIn(evt)} />
             </form>

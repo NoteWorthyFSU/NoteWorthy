@@ -41,13 +41,14 @@ class UpdateProfile extends React.Component {
         <br></br>
 
       <h1 className = "loginHeader">
-        <center> Need to Update your Account? </center>
+        <center> Need to Update your Account? </center> 
       </h1>
       <br></br>
       <br></br>
 
       <h2 className = "loginSub">
         <center> Enter the information below to update your account. </center>
+        <center> You may change your first name, last name, password, or delete your account. </center>
       </h2>
         <div className = "loginBox">
           <center>
@@ -56,8 +57,6 @@ class UpdateProfile extends React.Component {
                   <input name="upFirst" className = "userInput" type="text" defaultValue={this.state.first} placeholder="Enter a new first name"></input>
                   <br></br>
                   <input name="upLast" className = "userInput" type="text" defaultValue={this.state.last} placeholder="Enter a new last name"></input>
-                  <br></br>
-                  <input name="upEmail" className = "userInput" type="text" defaultValue={this.state.email} placeholder="Enter a new email"></input>
                   <br></br>
                   <input name="upPass" className = "userInput" type="password" placeholder= "Enter a new password"></input>
                   <br></br>

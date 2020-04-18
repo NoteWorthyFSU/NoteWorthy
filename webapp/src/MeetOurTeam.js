@@ -56,7 +56,7 @@ class MeetOurTeam extends React.Component {
           <div class="team_img">
         <img src={require('./humbert.png')} />
       </div>
-            <h3>Humbert Tores</h3>
+            <h3>Humbert Torres</h3>
             <p class="role">Backend developer</p>
             <p>I am a student studying Computer Science with a minor in Mathematics at Florida State University. I discovered my love for programming in High School when I started participating in local Hackathons including the 2014 Congressional STEM Competition FL-27 for which I was awarded the Overall District App Developer award. In my time in college, I have dipped my toes in as many branches of the Computer Science field as have been made available to me, as I find them all very interesting and applicable to my everyday work. I hope to one day have a role in developing software that positively impacts society. I currently work as a computer support technician for FSU’s Office of Enrollment Management.</p>
           </div>

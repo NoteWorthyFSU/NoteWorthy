@@ -5,9 +5,9 @@ import bcrypt
 from response import Response
 from pymongo import MongoClient
 from time import gmtime, strftime
+import datetime
 
-
-today = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+today = strftime("%Y-%m-%d", gmtime())
 
 loggedFirstName = ""
 loggedLastName = ""
@@ -212,13 +212,12 @@ def changeInfo() :
     document = request.form.to_dict()
     
     if document['upPass'] == "":
-      mongo.db.users.find_one_and_update({'email': loggedEmail}, {'$set': {'firstName': document['upFirst'], 'lastName': document['upLast'], 'email': document['upEmail']}})
+      mongo.db.users.find_one_and_update({'email': loggedEmail}, {'$set': {'firstName': document['upFirst'], 'lastName': document['upLast']}})
       loggedFirstName = document['upFirst']
       loggedLastName = document['upLast']
-      loggedEmail = document['upEmail']
       return redirect("http://localhost:3000/updateprofile")
     hashedPassword = bcrypt.hashpw(document['upPass'].encode("utf-8"), bcrypt.gensalt())
-    mongo.db.users.find_one_and_update({'email': loggedEmail}, {'$set': {'firstName': document['upFirst'], 'lastName': document['upLast'], 'email': document['upEmail'], 'password': hashedPassword}})
+    mongo.db.users.find_one_and_update({'email': loggedEmail}, {'$set': {'firstName': document['upFirst'], 'lastName': document['upLast'], 'password': hashedPassword}})
     user = mongo.db.users.find_one({'email': document['upEmail']})
 
     loggedFirstName = user['firstName']
@@ -260,10 +259,11 @@ def saveNotes() :
   #take the comma seperated topics list nad turn it into an array
   topicsArr = (document["Topics"]).split(",")
   notesRawArr = (document["Notes"]).split(",")
+  
 
   #iterate through every topic
   for topic in range(len(topicsArr)):  
-    topicNotes = []
+    topicNotes = [ ]
     #iterate through individual notes, line per line
     for index in range(len(notesRawArr)):   
       #find and remove the topic from the raw string array 
@@ -281,18 +281,14 @@ def saveNotes() :
   user = mongo.db.notes.find_one({'email': loggedEmail})
   #if nonexistent, make a new one
   if user is None:
-    mongo.db.notes.insert_one({
-      'email': loggedEmail,
-      today: [finalNotes],
-    })
-    return redirect("http://localhost:3000/dashboard")
+    mongo.db.notes.insert_one({'email': loggedEmail})
 
   #if it is existent, use $set to create a new entry for notes and set it to the timestamp 
-  mongo.db.notes.find_one_and_update({
+  mongo.db.notes.find_and_modify({
       'email': loggedEmail,
-    }, {"$set": {today: [finalNotes]}})
+    }, {"$push": {today:  [{document['Class']: [finalNotes]}]}})
   
-  return Response(200, finalNotes).serialize()
+  return redirect("http://localhost:3000/dashboard")
 
 
 @app.route('/userNotes')

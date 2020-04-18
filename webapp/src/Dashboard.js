@@ -35,7 +35,7 @@ class Dashboard extends React.Component {
       <body>
       <div className = "menu-bar">
       <ul>
-      <li> <a href="http://localhost:3000/dashboard">Dashboard</a> </li>
+      <li> <a href="http://localhost:3000/home">Dashboard</a> </li>
       <li> <a href="http://localhost:3000/mission">About Us </a>
       <div className="sub-menu-1">
         <ul>
@@ -49,7 +49,6 @@ class Dashboard extends React.Component {
         <div className="sub-menu-1">
           <ul>
             <li> <a href="http://localhost:3000/updateprofile">Update Profile</a></li>
-            <li> <a href="http://localhost:3000/deleteprofile">Delete Profile</a></li>
           </ul>
         </div>
         </li>
