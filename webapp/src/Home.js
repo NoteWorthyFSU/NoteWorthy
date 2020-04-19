@@ -10,11 +10,9 @@ class Home extends React.Component {
         super();
         this.state = {
           subjects: new Map()
-          
-
       }
       this.categoryFnc = this.categoryFnc.bind(this)
-      this.test = this.test.bind(this)
+     
      }
 
      categoryFnc()
@@ -68,6 +66,18 @@ class Home extends React.Component {
         .then(([res1]) => Promise.all([res1.json()]))
         .then(([data1]) =>
           {
+            function check(x,y){
+              console.log(y.keys())
+              for (let keys of y.keys())
+              {
+                console.log(keys)
+                if (x === keys)
+                {
+                  return false
+                }
+              }
+              return true
+            }
             var userNotes = []
             //data returns 0 if there are no notes
             if(data1['data'] !== 0)
@@ -78,26 +88,11 @@ class Home extends React.Component {
                 {
                   //find the subject in the api response on each iteration
                   var subject = data1['data']['notes'][i][0]['subject'][0]
-                  //alert(subject)
-                  var duplicate = false;
-                  if(tempMap.size === 0)
+                  let tempMap = this.state.subjects
+                  if(check(subject,this.state.subjects))
                   {
+                   
                     tempMap.set(subject,[])
-                  }
-                  for (let [sub,value] of tempMap) {
-                    let tmp = []
-                    const topics = []
-                    
-                    if(subject === sub)
-                    {
-                      duplicate = true 
-                      console.log(sub)
-                      
-                      
-                    }
-                    else{
-                      tempMap.set(subject,[])
-                    }
                   }
                   
                   var topicLength = [data1['data']['notes'][i][0]['subject'][1][0].length]
@@ -126,25 +121,9 @@ class Home extends React.Component {
         });
         
      }
-     test(){
-       //alert(this.state.subjects.get('History'))
-      //Object.keys(this.state.subjects).map(i => alert(this.state.subjects[i]))
-      //this.componentWillMount()
-        
-        
-        /*alert("poop")
-        var temp = this.state.subjects
-        for (let [key, value] of temp) {
-              alert("ppp")
-             console.log(key + ' = ' + value)
-          }*/
-         /*for (let value of this.state.subjects.keys()) {
-          console.log(value)
-          }*/
-     }
      
    
-    render() {
+     render() {
       //console.log(this.state.subjects)
       const allNotes = []
 
@@ -168,10 +147,6 @@ class Home extends React.Component {
         }
         allNotes.push(<div><h1 className="subject">{subject}</h1>{topics}<br></br></div>)
       }
-        
-
-
-      
       
       
         return (
