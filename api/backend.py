@@ -273,7 +273,7 @@ def saveNotes() :
         while("" in topicNotes) : 
           topicNotes.remove("")
       #create a dictionary of the topic and the corresponding notes
-      topicDict = dict({'topics' : {topicsArr[topic]: topicNotes}})
+      topicDict = dict({'topic' : [topicsArr[topic], topicNotes]})
       #add the dict to the final notes array, an array of dicts
     finalNotes+=[topicDict]
 

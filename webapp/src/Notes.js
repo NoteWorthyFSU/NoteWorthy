@@ -36,28 +36,39 @@ class Notes extends React.Component {
 
    componentWillMount()
     {
+        //onComponentWillMount will be used to parse through the data before loading the page
         Promise.all([
+            //use promises to ensure fetches are completed
+            //connect to backend 
             fetch('http://localhost:5000/userNotes'),
           ])
             .then(([res1]) => Promise.all([res1.json()]))
             .then(([data1]) =>
               {
+                //data returns 0 if there are no notes
                 if(data1['data'] !== 0)
                 {
-                    var parseObj = data1['data']
+                    //iterate through the notes array
                     for(var i = 0; i < (data1['data']['notes']).length; i++)
                     {
+                        //find the subject in the api response on each iteration
                         var subject = data1['data']['notes'][i][0]['subject'][0]
+                        //flag to see if a subject already exsists in the dropdown to avoid duplicates 
                         var exists = false;
+                        //iterate through the classeslist to see if there are any duplicates 
                         for(var j = 0; j < classesList.length; j++)
                         {
+                            //if there is a duplicate set the flag to true 
                             if(classesList[j]['value'] === subject)
                             {
                                 exists = true;
                             }
                         }
-                        if(exists === false) { classesList.push({'value': subject, 'label': subject})}
-                       
+                        //only add the subject to the dropdown list if it doesn't exist 
+                        if(exists === false) 
+                        { 
+                            classesList.push({'value': subject, 'label': subject})
+                        }
                     }
                 }   
             });

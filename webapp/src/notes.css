@@ -122,3 +122,17 @@ position: relative;
   width: 30vw;
 }
 
+.subject {
+  font-size: 12vh;
+  color: black;
+}
+
+.topic {
+  font-size: 9vh;
+  color: black;
+}
+
+.note {
+  font-size: 6vh;
+  color: black;
+}
