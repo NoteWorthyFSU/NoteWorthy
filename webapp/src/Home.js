@@ -189,6 +189,7 @@ class Home extends React.Component {
                             //temp = temp.get(subject)
                             //alert(temp[0])
                             var subNotes = document.createElement("UL")
+                            subNotes.className = "noteList"
                             for(let z of v)
                             {
                               // dont forget to add wrap around

@@ -471,3 +471,9 @@ form .submit:hover
   width: 100%;
   height: auto;
 }
+
+.noteList{
+  padding: 20px;
+  background: #ffffff;
+  font-size: 40px;
+}
