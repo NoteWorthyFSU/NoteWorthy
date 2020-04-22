@@ -399,6 +399,7 @@ form .submit:hover
   width: 500px;
   word-wrap:break-word;
 }
+
 .grab{
   opacity: 0%;
 }
@@ -472,8 +473,24 @@ form .submit:hover
   height: auto;
 }
 
+
+/* make better */
 .noteList{
   padding: 20px;
   background: #ffffff;
   font-size: 40px;
+}
+
+.liveNotes{
+  border-bottom-style: solid;
+  border-right-style: solid;
+  border-bottom-color:
+  black;
+  border-right-color:
+  black;
+
+  background-color: #ffffff;
+  margin-left: 5vw;
+  width: 500px;
+  word-wrap:break-word;
 }

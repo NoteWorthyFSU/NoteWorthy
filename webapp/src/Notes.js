@@ -127,9 +127,9 @@ class Notes extends React.Component {
             <div className ="cards" id="render">
                 {this.renderList()}
             </div>
-            <h1 id = "temptitle">{this.state.tempTitle}</h1>
+            <h1 className ="liveNotes" id = "temptitle">{this.state.tempTitle}</h1>
             <p className="currentTopic">current Topic: {this.state.currentTopic}</p>
-            <p className= "notes" id = "current">{this.state.cNotes}</p>
+            <p className= "liveNotes" id = "current">{this.state.cNotes}</p>
             <form action='http://localhost:5000/saveNotes' method="POST" onSubmit={this.handleSubmit}>
                 <button className="savebutton" type="submit" >Save</button>
                 <input type="text" name="Topics" value={this.state.data}></input>
