@@ -160,33 +160,47 @@ class Home extends React.Component {
           
           if(subject === this.state.subjectRequested)
           { 
-              
                 let tmp = []
                 const topics = []
 
                 for(let x of value)
                 {
-                  let i = 0
+                  
                   for (let [key,v] of x)
                   {
 
-                  
+                    
                     topics.push(<div><button className="topic" onClick={ (e) =>
                     {
                         if(this.state.subjects)
                         {
-                          alert("in")
+                          
                           let div = document.getElementById(key)
-                          let temp = this.state.subjects
-                          temp = temp.get(subject)
-                          alert(temp)
-                          let x = document.createTextNode(temp[i].get(key))
-                          div.appendChild(x)
+                          if(div)
+                          {
+                              while(div.firstChild)
+                              {
+                                  div.removeChild(div.firstChild)
+                              }
+                          }
+                          
+                          //let temp = this.state.subjects
+                          //temp = temp.get(subject)
+                          //alert(temp[0])
+                          var subNotes = document.createElement("UL")
+                          for(let z of v)
+                          {
+                            // dont forget to add wrap around
+                            var li = document.createElement("LI")
+                            li.appendChild(document.createTextNode(z))
+                            subNotes.appendChild(li)
+                          }
+                          div.appendChild(subNotes)
                         }
                         }}>{key}</button>
                         <div id ={key}></div>
                     </div>)
-                    i++
+                    
                   } 
                 }
         //console.log(subject)
