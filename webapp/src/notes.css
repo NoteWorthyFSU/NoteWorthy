@@ -27,8 +27,11 @@ h4 {
 }
 
 .noteBox{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   background-color: #17252A;
-  width: 99.9%;
+  width: 90%;
   height: 150px;
 
   box-shadow: 10px 10px 20px black;
@@ -63,6 +66,9 @@ h4 {
 .currentTopic{
   width: 30%;
   height: 20%;
+  margin-right: 3vw;
+  margin-top: 1vw;
+
 
 
   top: 76px;
@@ -86,6 +92,7 @@ h4 {
   width: 750px;
   margin: 0 auto;
   opacity: 75%;
+  padding-left: 1vw;
 }
 
 .savebutton{
@@ -120,6 +127,8 @@ position: relative;
 
 .wrapper {
   width: 30vw;
+  margin-left: 1vw;
+  margin-top: 1vw;
 }
 
 .subject {
@@ -128,11 +137,35 @@ position: relative;
 }
 
 .topic {
-  font-size: 9vh;
-  color: black;
+  font-size: 2vw;
+  color: white;
+  background: rgba(255,255,255,0.2);
+  padding: .3vw;
+  border-radius: 1vw;
+  margin-bottom: 1vw;
+  margin-left: 1vw;
 }
 
 .note {
   font-size: 6vh;
   color: black;
+}
+
+.loginSub2{
+  font-weight: lighter;
+  font-size: 3vh;
+  margin-bottom: 0vh;
+  text-shadow: 1px 1px 0px black;
+  color: white;
+  margin: 0 auto;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+
+
+
+
+
+
 }

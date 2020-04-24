@@ -42,6 +42,12 @@ h4 {
   color: #fff;
 }
 
+h5{
+  font-size: 4vh;
+  color: white;
+  margin-left: 1vw;
+}
+
 .loginHeader{
   font-weight: lighter;
   font-size: 6vh;
@@ -83,10 +89,29 @@ h4 {
   font-size: 1.736vw;
 }
 
+.userInput2 {
+  margin-top: 1vh;
+  width: 15vw;
+  height: 3vw;
+  font-size: 1;
+}
+
+.userInput2[type=submit]{
+  border-color: #509693;
+  background-color: #3AAFA9;
+  margin-top: 20px;
+  box-shadow: 10px 10px 20px black;
+  cursor: pointer;
+  outline: 0;
+}
+
 .userInput[type=text]{
   border: #3AAFA9;
   border-radius: 4px;
   background-color: #183844;
+  color: white;
+  padding-left: 1vw;
+
 }
 
 .userInput12 {
@@ -112,6 +137,10 @@ input[type=text]:focus {
   border-radius: 4px;
   background-color: #183844;
   color-adjust: white;
+  color: white;
+  padding-left: 1vw;
+
+
 }
 
 input[type=password]:focus {
@@ -151,6 +180,7 @@ input[type=password]:focus {
   cursor: pointer;
   outline: 0;
 }
+
 
 .userInput:hover[type=submit]{
   background-color: #2b7a78;
@@ -434,19 +464,13 @@ form .submit:hover
   color: #3AAFA9;
 }
 
-.smalltext:focus a{
-    border: none;
-    color: white;
+.smalltext:focus a {
+    border: #3AAFA9;
     outline: 0;
     position: relative;
     text-decoration: none;
 
   }
-
-
-/* Will delete later  */
-
-
 
 /* Style the button and place it in the middle of the container/image */
 .noteworthy .btn {
@@ -477,8 +501,10 @@ form .submit:hover
 /* make better */
 .noteList{
   padding: 20px;
-  background: #ffffff;
-  font-size: 40px;
+  background: rgba(255,255,255,0);
+  font-size: 1.5vw;
+  margin-left: 3vw;
+  color: white;
 }
 
 .liveNotes{

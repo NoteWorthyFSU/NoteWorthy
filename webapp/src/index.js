@@ -5,7 +5,6 @@ import Login from './Login';
 import Notes from './Notes';
 import Error from './Error';
 import Home from './Home';
-import Dashboard from './Dashboard';
 import ContactUs from './ContactUs';
 import Mission from './Mission';
 import UpdateProfile from './UpdateProfile';
@@ -21,7 +20,6 @@ const routing = (
       <Route exact path="/" component={Login}/>
       <Route exact path="/Home" component={Home}/>
       <Route  exact path="/Notes" component={Notes}/>
-      <Route  exact path="/Dashboard" component={Dashboard}/>
       <Route  exact path="/ContactUs" component={ContactUs}/>
       <Route  exact path="/Mission" component={Mission}/>
       <Route  exact path="/UpdateProfile" component={UpdateProfile}/>

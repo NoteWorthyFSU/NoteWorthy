@@ -23,7 +23,7 @@ class Home extends React.Component {
 
 
    handleClasses = (newValue, actionMeta) => {
-     this.setState({currentSubject: newValue['Value']})
+     
      
     if(newValue === null)
     {
@@ -31,7 +31,8 @@ class Home extends React.Component {
     }
     if(newValue !== null)
     {
-        this.setState({actualClass: newValue['value'], subjectRequested: newValue['value'] });
+      this.setState({currentSubject: newValue['Value']})
+      this.setState({actualClass: newValue['value'], subjectRequested: newValue['value'] });
     }
     
     
@@ -183,11 +184,7 @@ class Home extends React.Component {
                                 {
                                     div.removeChild(div.firstChild)
                                 }
-                            
-                            
-                            //let temp = this.state.subjects
-                            //temp = temp.get(subject)
-                            //alert(temp[0])
+                
                             var subNotes = document.createElement("UL")
                             subNotes.className = "noteList"
                             for(let z of v)
@@ -215,63 +212,9 @@ class Home extends React.Component {
                     
                   } 
                 }
-        //console.log(subject)
-        //IF SUBJECT === THIS.STATE.REQUESTEDSUBJECT
-
-        /*
-        //allows for subject shown to be the subject requested
-        if(subject === this.state.subjectRequested)
-        {
-          for(let x of value)
-          {
-            for(let [key, v] of x)
-            {
-              const noteLines = []
-              /*
-              //console.log(key)
-              var div = document.createElement("DIV")
-              var subNotes = document.createElement("UL")
-
-
-              for(let z of v)
-              {
-                // dont forget to add wrap around
-                var li = document.createElement("LI")
-                li.appendChild(document.createTextNode(z))
-                subNotes.appendChild(li)
-              }
-              div.appendChild(subNotes)
-              
-              var miniNotes = []
-              for(let z of v)
-              {
-                miniNotes.push(z)
-                //key!
-                noteLines.push({'topic': key, 'key': <h1 className="note">{miniNotes}</h1>})
-                
-                //console.log(z)
-              }
-           //  
-              topics.push(<div><button className="topic" onClick={(e) => 
-                {
-                  
-                  if(this.state.topicRequested === "")
-                  {
-                    this.setState({topicRequested: key})
-                  }
-                  else {this.setState({topicRequested: ""})}
-                    
-                  }}>{key}</button>
-                  
-                  {this.state.topicRequested !== "" && 
-                  <div><h1>{noteLines[0]['key']}</h1></div>
-                } 
-                
-                
-                </div>)
-          }  */
+      
         
-        allNotes.push(<div><h1 className="subject">{subject}</h1>{topics}<br></br></div>)
+        allNotes.push(<div>{topics}<br></br></div>)
         }
       }
       
@@ -287,10 +230,12 @@ class Home extends React.Component {
             onChange={this.handleClasses}
             
             options={classesList}
-            placeholder="Pick a Subject"
+            placeholder="Choose a Folder"
         />
+                <br></br> 
 
-        {this.state.subjectRequested === "" && <div><h1 style={{color: 'black'}}>pick something</h1></div>}
+        <div> <h5> Current Folder: {this.state.subjectRequested} </h5></div>
+        <br></br> 
         {/*alert((this.state.subjects).size)*/}
          {allNotes}
           
@@ -303,6 +248,8 @@ class Home extends React.Component {
 
         {/*alert(this.state.subjects.keys())*/}
                 {this.items}
+               
+
               
 
           </div>

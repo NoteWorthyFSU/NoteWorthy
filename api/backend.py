@@ -96,7 +96,7 @@ def home():
         loggedLastName = verifiedUser['lastName']
         loggedEmail = verifiedUser['email']
         session['username'] = str(verifiedUser['_id'])
-        return redirect("http://localhost:3000/dashboard")
+        return redirect("http://localhost:3000/home")
 
 @app.route('/')
 def index():
@@ -153,11 +153,11 @@ def loginPage():
       loggedEmail = user['email']
       session['username'] = str(user['_id'])
       isLoggedIn = True
-      return redirect("http://localhost:3000/dashboard")
+      return redirect("http://localhost:3000/home")
     else:
       isInvalid = True
       isDuplicate = False
-      return "Invalid Credentials"
+      return redirect("http://localhost:3000/login")
 
 @app.route('/status', methods=['GET'])
 def status():
@@ -218,7 +218,7 @@ def changeInfo() :
       return redirect("http://localhost:3000/updateprofile")
     hashedPassword = bcrypt.hashpw(document['upPass'].encode("utf-8"), bcrypt.gensalt())
     mongo.db.users.find_one_and_update({'email': loggedEmail}, {'$set': {'firstName': document['upFirst'], 'lastName': document['upLast'], 'password': hashedPassword}})
-    user = mongo.db.users.find_one({'email': document['upEmail']})
+    user = mongo.db.users.find_one({'email': loggedEmail})
 
     loggedFirstName = user['firstName']
     loggedLastName = user['lastName']
@@ -257,8 +257,8 @@ def saveNotes() :
   finalNotes = []
   document = request.form.to_dict()
   #take the comma seperated topics list nad turn it into an array
-  topicsArr = (document["Topics"]).split(",")
-  notesRawArr = (document["Notes"]).split(",")
+  topicsArr = (document["Topics"]).split("\n,")
+  notesRawArr = (document["Notes"]).split("\n,")
   
 
   #iterate through every topic
@@ -288,7 +288,7 @@ def saveNotes() :
       'email': loggedEmail,
     }, {"$push": {'notes':  [{'subject': [document['Class'], [finalNotes]]}]}})
   
-  return redirect("http://localhost:3000/dashboard")
+  return redirect("http://localhost:3000/home")
 
 
 @app.route('/userNotes')

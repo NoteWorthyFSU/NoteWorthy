@@ -26,7 +26,7 @@ class Notes extends React.Component {
             prevKey: 0,
             inArrow: false,
             className: null,
-            actualClass: null
+            actualClass: null,
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -116,6 +116,8 @@ class Notes extends React.Component {
         <div id="main">
         <Dashboard>
         </Dashboard>
+        <br></br>
+
         <Creatable className="wrapper"
             isClearable
             onChange={this.handleClasses}
@@ -123,19 +125,21 @@ class Notes extends React.Component {
             options={classesList}
             placeholder="Pick or Create a Subject"
         />
-       
+                <div> <h2 className = "loginSub2" > <center> Instructions: 1. Select or create a folder 2. Type out note topic 3. Hit the tab button 4. Start writing notes 5. To create a new bullet point hit the tab button 6. To create a new note topic hit tab again</center> </h2></div>
+
             <div className ="cards" id="render">
                 {this.renderList()}
             </div>
             <h1 className ="liveNotes" id = "temptitle">{this.state.tempTitle}</h1>
-            <p className="currentTopic">current Topic: {this.state.currentTopic}</p>
             <p className= "liveNotes" id = "current">{this.state.cNotes}</p>
+            <p className="currentTopic">Current Topic: {this.state.currentTopic}</p>
             <form action='http://localhost:5000/saveNotes' method="POST" onSubmit={this.handleSubmit}>
                 <button className="savebutton" type="submit" >Save</button>
-                <input type="text" name="Topics" value={this.state.data}></input>
+                <input type="text" name="Topics" value={this.state.data} style={{display: "none" }}></input>
                 <br></br>
-                <input type="text" name="Notes" value={this.state.data2}></input>
-                <input  type="text" name="Class" value={this.state.actualClass}></input>
+                <input type="text" name="Notes" value={this.state.data2} style={{display: "none" }}></input>
+                <input  type="text" name="Class" value={this.state.actualClass} style={{display: "none" }}></input>
+
                 <textarea autofocus id="area" className = "noteBox" rows="50" cols="50"
                     onChange={evt => this.update(evt)} onKeyDown={evt => this.keyIn(evt)} />
             </form>
@@ -154,8 +158,10 @@ class Notes extends React.Component {
     {
         var Notes = this.state.notes
         var doc = document.getElementById("render")
+        // checks if div exists
         if(doc)
         {
+            // clears div
             while(doc.firstChild)
             {
                 doc.removeChild(doc.firstChild)
@@ -168,17 +174,20 @@ class Notes extends React.Component {
         // goes through each main topic
         for(x of topics)
         {
+            // adds topic to div
            var div = document.createElement("DIV")
            div.style.wordWrap="break-word"
            var title = document.createElement("H1")
            title.appendChild(document.createTextNode(x))
            div.appendChild(title)
+
+           // Loads notes for each topic into list element
+
            var subNotes = document.createElement("UL")
            subNotes.className = "notes"
            var y
            for(y of notes.get(x))
            {
-                // dont forget to add wrap around
                 var li = document.createElement("LI")
                 li.appendChild(document.createTextNode(y))
                 subNotes.appendChild(li)
@@ -190,6 +199,7 @@ class Notes extends React.Component {
 
     keyIn(e)
     {
+        // checks key input
         if(e.keyCode == 9)
         {
             this.tab(e)
@@ -207,14 +217,14 @@ class Notes extends React.Component {
 
     upArrow()
     {
-        //console.log("up")
+        //backs through notes
         this.setState({currentNote: this.state.currentNote+1,inArrow: true})
         var notes = this.state.notes
         var cTopic = notes.get(this.state.currentTopic)
-        //alert(cTopic)
+        
         var pos
         if(cTopic){pos= cTopic.length - 1-  this.state.currentNote}
-        //console.log(pos)
+        
         if(pos < 0 && pos >= -1 && this.state.topics.length > 1 && this.state.topicNum > 1)
         {
             this.setState({currentNote: 1})
@@ -225,7 +235,7 @@ class Notes extends React.Component {
             var toChange = cTopic[cTopic.length-1]
             this.setState({cNotes: toChange})
             document.getElementById("area").value = toChange
-           // this.upArrow()
+           
         }
         else if(pos >=0)
         {
@@ -269,7 +279,7 @@ class Notes extends React.Component {
                 temp.get(this.state.currentTopic).push(box.value)
                 this.setState({notes: temp})
                 //add notes
-                dataArray2.push("[" + this.state.currentTopic + "]" + box.value)
+                dataArray2.push("[" + this.state.currentTopic + "]" + box.value + "\n")
                 this.setState({data2: dataArray2})
                 box.value = ""
                 this.setState({prevKey: e.keyCode,cNotes: ""})

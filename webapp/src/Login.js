@@ -60,13 +60,13 @@ class Login extends React.Component {
 
           {this.state.invalidCredentials === true && 
           <div>
-            {alert("the credentials you entered were invalid.")}
+            {alert("The credentials you entered were invalid.")}
             {this.setState({invalidCredentials: false})}
             </div>}
           
             {this.state.duplicate === true && 
           <div>
-            {alert("the user already exists.")}
+            {alert("The user already exists.")}
             {this.setState({duplicate: false})}
             </div>}
           <br></br>
@@ -93,9 +93,8 @@ class Login extends React.Component {
                   <button className="userInput" type="submit">Sign In</button>
                 </form>
                 <br></br>
-          <div className = "smalltext">
-          <button onClick={this.switchForm.bind()}>Don't have an account? Click here to sign up.</button>
-          </div>
+          <button className = "userInput2" type="submit" onClick={this.switchForm.bind()}>Don't have an account? Click here to register.</button>
+          <br></br>
           <br></br>
             </center>
           </div>
@@ -131,12 +130,15 @@ class Login extends React.Component {
                   <button className="userInput" type="submit">Sign Up</button>
                 </form>
                 <br></br>
-                <div className = "smalltext">
-                <button onClick={this.switchForm.bind()}>Don't have an account? Click here to sign up.</button>
-                </div>
+                <button className="userInput2" type="submit" onClick={this.switchForm.bind()}>Already have an account? Click here to login.</button>
+                <br></br>
+                <br></br>
                 <br></br>
             </center>
           </div>
+          <br></br>
+          <br></br>
+          <br></br>
           </div>
         )
     }

@@ -67,7 +67,7 @@ class UpdateProfile extends React.Component {
                 if(result === true)
                 {
                   window.location = "http://localhost:5000/delete"
-                }}}>delete account</button>
+                }}}className="userInput2" type="submit">Delete Account</button>
               <br></br>
               <br></br>
               <br></br>
