@@ -258,25 +258,15 @@ def saveNotes() :
   document = request.form.to_dict()
   #take the comma seperated topics list nad turn it into an array
   document["Notes"] += ","
-  print(document["Notes"])
-  print(document["Topics"])
   topicsArr = (document["Topics"]).split(",")
   notesRawArr = (document["Notes"]).split("\t,") 
-  for i,j in enumerate(notesRawArr,0):
-    print(f"topic {i}")
-    print(len(j))
-    print(j)
-  print(topicsArr)
   #iterate through every topic
   for topic in range(len(topicsArr)):  
     topicNotes = [ ]
     #iterate through individual notes, line per line
     for index in range(len(notesRawArr)):   
       #find and remove the topic from the raw string array 
-      print(f"in loop thats breaking, topic:{topic}")
-      print(topicsArr[topic])
-      print(notesRawArr[index])
-      if (topicsArr[topic] in notesRawArr[index]):
+      if (("["+topicsArr[topic]+"]") in notesRawArr[index]):
         tempNote = (notesRawArr[index].split("[" + topicsArr[topic] + "]"))
         topicNotes += tempNote
         while("" in topicNotes) : 
