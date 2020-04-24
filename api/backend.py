@@ -218,7 +218,7 @@ def changeInfo() :
       return redirect("http://localhost:3000/updateprofile")
     hashedPassword = bcrypt.hashpw(document['upPass'].encode("utf-8"), bcrypt.gensalt())
     mongo.db.users.find_one_and_update({'email': loggedEmail}, {'$set': {'firstName': document['upFirst'], 'lastName': document['upLast'], 'password': hashedPassword}})
-    user = mongo.db.users.find_one({'email': logged})
+    user = mongo.db.users.find_one({'email': loggedEmail})
 
     loggedFirstName = user['firstName']
     loggedLastName = user['lastName']
@@ -258,15 +258,24 @@ def saveNotes() :
   document = request.form.to_dict()
   #take the comma seperated topics list nad turn it into an array
   document["Notes"] += ","
-  topicsArr = (document["Topics"]).split("\t,")
+  print(document["Notes"])
+  print(document["Topics"])
+  topicsArr = (document["Topics"]).split(",")
   notesRawArr = (document["Notes"]).split("\t,") 
-
+  for i,j in enumerate(notesRawArr,0):
+    print(f"topic {i}")
+    print(len(j))
+    print(j)
+  print(topicsArr)
   #iterate through every topic
   for topic in range(len(topicsArr)):  
     topicNotes = [ ]
     #iterate through individual notes, line per line
     for index in range(len(notesRawArr)):   
       #find and remove the topic from the raw string array 
+      print(f"in loop thats breaking, topic:{topic}")
+      print(topicsArr[topic])
+      print(notesRawArr[index])
       if (topicsArr[topic] in notesRawArr[index]):
         tempNote = (notesRawArr[index].split("[" + topicsArr[topic] + "]"))
         topicNotes += tempNote
@@ -274,6 +283,7 @@ def saveNotes() :
           topicNotes.remove("")
       #create a dictionary of the topic and the corresponding notes
       topicDict = dict({'topic' : [topicsArr[topic], topicNotes]})
+      print(topicDict)
       #add the dict to the final notes array, an array of dicts
     finalNotes+=[topicDict]
 

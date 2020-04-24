@@ -187,8 +187,11 @@ class Home extends React.Component {
                 
                             var subNotes = document.createElement("UL")
                             subNotes.className = "noteList"
+                            
                             for(let z of v)
                             {
+                              console.log(key)
+                              console.log(z)
                               // dont forget to add wrap around
                               var li = document.createElement("LI")
                               li.appendChild(document.createTextNode(z))
