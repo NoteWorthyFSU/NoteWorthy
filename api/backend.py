@@ -218,7 +218,7 @@ def changeInfo() :
       return redirect("http://localhost:3000/updateprofile")
     hashedPassword = bcrypt.hashpw(document['upPass'].encode("utf-8"), bcrypt.gensalt())
     mongo.db.users.find_one_and_update({'email': loggedEmail}, {'$set': {'firstName': document['upFirst'], 'lastName': document['upLast'], 'password': hashedPassword}})
-    user = mongo.db.users.find_one({'email': loggedEmail})
+    user = mongo.db.users.find_one({'email': logged})
 
     loggedFirstName = user['firstName']
     loggedLastName = user['lastName']
@@ -257,9 +257,9 @@ def saveNotes() :
   finalNotes = []
   document = request.form.to_dict()
   #take the comma seperated topics list nad turn it into an array
-  topicsArr = (document["Topics"]).split("\n,")
-  notesRawArr = (document["Notes"]).split("\n,")
-  
+  document["Notes"] += ","
+  topicsArr = (document["Topics"]).split("\t,")
+  notesRawArr = (document["Notes"]).split("\t,") 
 
   #iterate through every topic
   for topic in range(len(topicsArr)):  

@@ -279,7 +279,7 @@ class Notes extends React.Component {
                 temp.get(this.state.currentTopic).push(box.value)
                 this.setState({notes: temp})
                 //add notes
-                dataArray2.push("[" + this.state.currentTopic + "]" + box.value + "\n")
+                dataArray2.push("[" + this.state.currentTopic + "]" + box.value + "\t")
                 this.setState({data2: dataArray2})
                 box.value = ""
                 this.setState({prevKey: e.keyCode,cNotes: ""})
